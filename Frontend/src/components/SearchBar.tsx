@@ -244,7 +244,7 @@ const SearchBar = () => {
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-silver-300">Job Board</label>
                   <select 
-                    className="w-full premium-glass text-white rounded-lg px-3 py-2.5 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none bg-transparent appearance-none"
+                    className="w-full premium-glass text-white rounded-lg px-3 py-2.5 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none bg-blue-600 appearance-none"
                     value={filters.site}
                     onChange={(e) => updateFilter('site', e.target.value)}
                     style={{ backgroundColor: 'transparent', WebkitBackgroundColor: 'transparent', backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik02IDFMMS41IDZMMTAuNSA2TDYgMVoiIGZpbGw9IndoaXRlIiBzdHJva2U9IndoaXRlIi8+Cjwvc3ZnPgo=')", backgroundRepeat: "no-repeat", backgroundPosition: "right 0.75rem center", paddingRight: "2.5rem" }}
@@ -260,7 +260,7 @@ const SearchBar = () => {
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-silver-300">Job Age</label>
                   <select 
-                    className="w-full premium-glass text-white rounded-lg px-3 py-2.5 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none bg-transparent appearance-none"
+                    className="w-full premium-glass text-white rounded-lg px-3 py-2.5 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none bg-bg-blue-600 appearance-none"
                     value={filters.days_old}
                     onChange={(e) => updateFilter('days_old', parseInt(e.target.value))}
                     style={{ backgroundColor: 'transparent', WebkitBackgroundColor: 'transparent', backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik02IDFMMS41IDZMMTAuNSA2TDYgMVoiIGZpbGw9IndoaXRlIiBzdHJva2U9IndoaXRlIi8+Cjwvc3ZnPgo=')", backgroundRepeat: "no-repeat", backgroundPosition: "right 0.75rem center", paddingRight: "2.5rem" }}
@@ -276,7 +276,7 @@ const SearchBar = () => {
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-silver-300">Results Per Page</label>
                   <select 
-                    className="w-full premium-glass text-white rounded-lg px-3 py-2.5 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none bg-transparent appearance-none"
+                    className="w-full premium-glass text-white rounded-lg px-3 py-2.5 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none bg-bg-blue-600 appearance-none"
                     value={filters.results}
                     onChange={(e) => updateFilter('results', parseInt(e.target.value))}
                     style={{ backgroundColor: 'transparent', WebkitBackgroundColor: 'transparent', backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik02IDFMMS41IDZMMTAuNSA2TDYgMVoiIGZpbGw9IndoaXRlIiBzdHJva2U9IndoaXRlIi8+Cjwvc3ZnPgo=')", backgroundRepeat: "no-repeat", backgroundPosition: "right 0.75rem center", paddingRight: "2.5rem" }}
