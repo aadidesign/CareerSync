@@ -10,7 +10,7 @@ export const searchJobs = async (params: {
   remote_only?: boolean;
 }) => {
   try {
-    const response = await fetch('http://localhost:5000/api/search', {
+    const response = await fetch('https://careersync-m6ct.onrender.com/api/search', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
