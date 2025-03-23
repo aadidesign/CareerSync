@@ -1,8 +1,7 @@
-
 import { useState, useEffect } from 'react';
 import { Bookmark, ExternalLink, MapPin, Building, DollarSign, Briefcase, Calendar, Clock, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { checkJobSaved, toggleSavedJob } from '@/services/api';
 import { toast } from '@/components/ui/use-toast';
@@ -13,6 +12,7 @@ interface JobCardProps {
     title: string;
     company: string;
     location: string;
+    company_url?: string;
     salary?: string;
     salary_range?: string;
     logo_url?: string;
@@ -29,6 +29,7 @@ interface JobCardProps {
 
 const JobCard = ({ job }: JobCardProps) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [isSaved, setIsSaved] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
@@ -85,6 +86,8 @@ const JobCard = ({ job }: JobCardProps) => {
   };
   
   const formatTimeAgo = (dateString: string) => {
+    if (!dateString) return 'Unknown';
+    
     const now = new Date();
     const postedDate = new Date(dateString);
     const diffInDays = Math.floor((now.getTime() - postedDate.getTime()) / (1000 * 60 * 60 * 24));
@@ -139,10 +142,24 @@ const JobCard = ({ job }: JobCardProps) => {
     return job.job_type.charAt(0).toUpperCase() + job.job_type.slice(1).replace('-', ' ');
   };
 
+  const handleCardClick = () => {
+    navigate(`/job/${job.id}`);
+  };
+
+  const handleApplyClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Open the application URL in a new tab
+    if (job.company_url) {
+      window.open(job.company_url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
-    <Link 
-      to={`/job/${job.id}`}
-      className="block"
+    <div 
+      onClick={handleCardClick}
+      className="block cursor-pointer"
     >
       <motion.div
         className="premium-card-interactive h-full rounded-lg p-5 relative flex flex-col"
@@ -240,13 +257,23 @@ const JobCard = ({ job }: JobCardProps) => {
             </span>
           </div>
           
-          <span className="text-navy-400 text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-            View Details
-            <ExternalLink className="h-4 w-4" />
-          </span>
+          <div className="flex items-center gap-2">
+            {job.source_url && (
+              <button 
+                onClick={handleApplyClick}
+                className="premium-button rounded-lg px-3 py-1 text-xs"
+              >
+                Apply Now
+              </button>
+            )}
+            <span className="text-navy-400 text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+              View Details
+              <ExternalLink className="h-4 w-4" />
+            </span>
+          </div>
         </div>
       </motion.div>
-    </Link>
+    </div>
   );
 };
 

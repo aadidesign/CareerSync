@@ -1,35 +1,44 @@
-
 import { supabase } from '@/integrations/supabase/client';
 
 // Job Search API
 export const searchJobs = async (params: {
-  query?: string;
+  search?: string;
   location?: string;
-  experienceLevel?: string;
-  jobType?: string;
-  remote?: boolean;
-  page?: number;
-  limit?: number;
+  site?: string;
+  days_old?: number;
+  results?: number;
+  remote_only?: boolean;
 }) => {
-  const searchParams = new URLSearchParams();
-  
-  if (params.query) searchParams.append('query', params.query);
-  if (params.location) searchParams.append('location', params.location);
-  if (params.experienceLevel) searchParams.append('experienceLevel', params.experienceLevel);
-  if (params.jobType) searchParams.append('jobType', params.jobType);
-  if (params.remote !== undefined) searchParams.append('remote', String(params.remote));
-  if (params.page) searchParams.append('page', String(params.page));
-  if (params.limit) searchParams.append('limit', String(params.limit));
-  
-  const queryString = searchParams.toString();
-  const { data, error } = await supabase.functions.invoke('search-jobs', {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-    body: { queryParams: queryString }
-  });
-  
-  if (error) throw error;
-  return data;
+  try {
+    const response = await fetch('http://localhost:5000/api/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        search: params.search || '',
+        location: params.location || '',
+        site: params.site || 'all',
+        days_old: params.days_old || 7,
+        results: params.results || 10,
+        remote_only: params.remote_only || false,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json();
+    
+    // Store the search results in localStorage as a string
+    localStorage.setItem("searchResults", JSON.stringify(data));
+    
+    return data;
+  } catch (error) {
+    console.error('Error searching jobs:', error);
+    throw error;
+  }
 };
 
 // Job Detail API

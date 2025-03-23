@@ -24,141 +24,23 @@ import JobCard from '../components/JobCard';
 import SearchBar from '../components/SearchBar';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
+import { useSearch } from '@/contexts/SearchContext';
 
-// Mock job data
+// Update mockJobs structure to match API response format
 const mockJobs = [
-  {
-    id: '1',
-    title: 'Senior Frontend Developer',
-    company: 'TechCorp Solutions',
-    location: 'San Francisco, CA',
-    salary: '$120k - $150k',
-    logo_url: '',
-    description: 'We are looking for an experienced Frontend Developer to join our team and help build amazing web applications using React, TypeScript, and more.',
-    source: 'LinkedIn',
-    source_url: '#',
-    posted_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-    is_remote: false,
-    experience_level: 'senior' as const,
-    matchPercentage: 92,
-  },
-  {
-    id: '2',
-    title: 'Full Stack Engineer',
-    company: 'InnovateTech',
-    location: 'New York, NY',
-    salary: '$130k - $160k',
-    logo_url: '',
-    description: 'Join our dynamic team building next-generation software with Node.js, React, and AWS. Focus on scalable architecture and performance.',
-    source: 'Indeed',
-    source_url: '#',
-    posted_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
-    is_remote: false,
-    experience_level: 'mid' as const,
-    matchPercentage: 85,
-  },
-  {
-    id: '3',
-    title: 'Product Designer',
-    company: 'DesignWorks Agency',
-    location: 'Austin, TX',
-    salary: '$90k - $120k',
-    logo_url: '',
-    description: 'Creative and detail-oriented Product Designer needed for our growing UX team. Work on exciting projects for major tech clients.',
-    source: 'Glassdoor',
-    source_url: '#',
-    posted_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
-    is_remote: true,
-    experience_level: 'mid' as const,
-    matchPercentage: 78,
-  },
-  {
-    id: '4',
-    title: 'DevOps Engineer',
-    company: 'CloudScale Systems',
-    location: 'Remote',
-    salary: '$115k - $145k',
-    logo_url: '',
-    description: 'Help us build and maintain our cloud infrastructure using Docker, Kubernetes, and AWS. CI/CD pipeline expertise is a must.',
-    source: 'Monster',
-    source_url: '#',
-    posted_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
-    is_remote: true,
-    experience_level: 'mid' as const,
-    matchPercentage: 88,
-  },
-  {
-    id: '5',
-    title: 'Junior Software Developer',
-    company: 'StartupLaunch',
-    location: 'Chicago, IL',
-    salary: '$70k - $90k',
-    logo_url: '',
-    description: 'Great opportunity for a recent graduate to join our growing team. Work on our core product using modern technologies.',
-    source: 'ZipRecruiter',
-    source_url: '#',
-    posted_at: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString(),
-    is_remote: false,
-    experience_level: 'entry' as const,
-    matchPercentage: 95,
-  },
-  {
-    id: '6',
-    title: 'Data Scientist',
-    company: 'AnalyticsPro',
-    location: 'Boston, MA',
-    salary: '$110k - $140k',
-    logo_url: '',
-    description: 'Join our data team to build models and derive insights from large datasets. Experience with ML and statistical analysis required.',
-    source: 'LinkedIn',
-    source_url: '#',
-    posted_at: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-    is_remote: false,
-    experience_level: 'mid' as const,
-    matchPercentage: 82,
-  },
-  {
-    id: '7',
-    title: 'UX/UI Designer',
-    company: 'CreativeMinds',
-    location: 'Los Angeles, CA',
-    salary: '$80k - $110k',
-    logo_url: '',
-    description: 'Creative designer needed to craft user experiences for our clients. Strong portfolio showing mobile and web interfaces required.',
-    source: 'Behance',
-    source_url: '#',
-    posted_at: new Date(Date.now() - 9 * 24 * 60 * 60 * 1000).toISOString(),
-    is_remote: false,
-    experience_level: 'mid' as const,
-    matchPercentage: 90,
-  },
-  {
-    id: '8',
-    title: 'Engineering Manager',
-    company: 'TechGiants',
-    location: 'Seattle, WA',
-    salary: '$160k - $200k',
-    logo_url: '',
-    description: 'Lead a team of engineers building our next-generation products. Strong technical and leadership skills required.',
-    source: 'Indeed',
-    source_url: '#',
-    posted_at: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
-    is_remote: false,
-    experience_level: 'senior' as const,
-    matchPercentage: 87,
-  },
+  // Will be replaced with real data from API
 ];
 
-// Filter categories
+// Update filter categories based on the new API structure
 const filterCategories = [
   {
     name: 'Experience Level',
     key: 'experienceLevel',
     icon: Award,
     options: [
-      { value: 'entry', label: 'Entry Level' },
-      { value: 'mid', label: 'Mid Level' },
-      { value: 'senior', label: 'Senior Level' },
+      { value: 'entry_level', label: 'Entry Level' },
+      { value: 'mid_level', label: 'Mid Level' },
+      { value: 'senior_level', label: 'Senior Level' },
       { value: 'executive', label: 'Executive' },
     ],
   },
@@ -172,30 +54,6 @@ const filterCategories = [
       { value: 'contract', label: 'Contract' },
       { value: 'internship', label: 'Internship' },
       { value: 'temporary', label: 'Temporary' },
-    ],
-  },
-  {
-    name: 'Company',
-    key: 'company',
-    icon: Building,
-    options: [
-      { value: 'techcorp', label: 'TechCorp Solutions' },
-      { value: 'innovatetech', label: 'InnovateTech' },
-      { value: 'designworks', label: 'DesignWorks Agency' },
-      { value: 'cloudscale', label: 'CloudScale Systems' },
-      { value: 'analyticspro', label: 'AnalyticsPro' },
-    ],
-  },
-  {
-    name: 'Salary Range',
-    key: 'salary',
-    icon: Banknote,
-    options: [
-      { value: '0-50000', label: '$0 - $50,000' },
-      { value: '50000-80000', label: '$50,000 - $80,000' },
-      { value: '80000-120000', label: '$80,000 - $120,000' },
-      { value: '120000-150000', label: '$120,000 - $150,000' },
-      { value: '150000-', label: '$150,000+' },
     ],
   },
   {
@@ -213,59 +71,64 @@ const filterCategories = [
     key: 'datePosted',
     icon: CalendarDays,
     options: [
-      { value: 'today', label: 'Today' },
-      { value: 'week', label: 'Past week' },
-      { value: 'month', label: 'Past month' },
-      { value: '3months', label: 'Past 3 months' },
+      { value: '1', label: 'Today' },
+      { value: '3', label: 'Past 3 days' },
+      { value: '7', label: 'Past week' },
+      { value: '14', label: 'Past 2 weeks' },
+      { value: '30', label: 'Past month' },
     ],
   },
 ];
 
 const Search = () => {
   const location = useLocation();
-  const [jobs, setJobs] = useState(mockJobs);
-  const [filteredJobs, setFilteredJobs] = useState(mockJobs);
+  const { 
+    searchParams, 
+    searchResults, 
+    isLoading: isContextLoading, 
+    error: contextError,
+    setSearchParams, 
+    setSearchResults, 
+    setIsLoading: setContextIsLoading, 
+    setError: setContextError 
+  } = useSearch();
+  
+  const [filteredJobs, setFilteredJobs] = useState(searchResults?.jobs || []);
   const [activeFilters, setActiveFilters] = useState<Record<string, string[]>>({});
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [sortBy, setSortBy] = useState('relevance');
   const [expandedFilters, setExpandedFilters] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLocalLoading, setIsLocalLoading] = useState(false);
   
-  // Parse URL query params
+  // Modify the URL params effect to not automatically fetch jobs, just update UI from existing results
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const query = params.get('q');
+    const searchQuery = params.get('q');
     const locationParam = params.get('location');
+    const site = params.get('site') || 'all';
+    const daysOld = params.get('days_old') ? parseInt(params.get('days_old') || '7') : 7;
+    const results = params.get('results') ? parseInt(params.get('results') || '10') : 10;
+    const remoteOnly = params.get('remote_only') === 'true';
     
-    // Simulate loading state
-    setIsLoading(true);
+    // Create the search parameters object
+    const newSearchParams = {
+      search: searchQuery || '',
+      location: locationParam || '',
+      site,
+      days_old: daysOld,
+      results,
+      remote_only: remoteOnly,
+    };
+
+    // Just update search params in context but don't fetch
+    setSearchParams(newSearchParams);
     
-    // Simulate API call with timeout
-    setTimeout(() => {
-      let filtered = [...mockJobs];
-      
-      if (query) {
-        const queryLower = query.toLowerCase();
-        filtered = filtered.filter(job => 
-          job.title.toLowerCase().includes(queryLower) ||
-          job.company.toLowerCase().includes(queryLower) ||
-          job.description.toLowerCase().includes(queryLower)
-        );
-      }
-      
-      if (locationParam) {
-        const locationLower = locationParam.toLowerCase();
-        filtered = filtered.filter(job => 
-          job.location.toLowerCase().includes(locationLower) ||
-          (locationLower === 'remote' && job.is_remote)
-        );
-      }
-      
-      setFilteredJobs(filtered);
-      setIsLoading(false);
-    }, 800);
-  }, [location.search]);
-  
+    // If we have existing results, just show them
+    if (searchResults && searchResults.jobs) {
+      setFilteredJobs(searchResults.jobs);
+    }
+  }, [location.search, searchResults]); // Only depend on location.search and existing results
+
   const toggleFilter = (category: string, value: string) => {
     setActiveFilters(prev => {
       const currentFilters = { ...prev };
@@ -301,20 +164,21 @@ const Search = () => {
   
   // Apply filters and sorting to jobs
   useEffect(() => {
-    let result = [...jobs];
+    if (!searchResults) return;
+    
+    let result = [...searchResults.jobs];
     
     // Apply active filters
     Object.entries(activeFilters).forEach(([category, values]) => {
       if (values.length > 0) {
         result = result.filter(job => {
-          // This is a simplified implementation; in a real app, you'd map the filter
-          // categories to the job properties more precisely
           switch(category) {
             case 'experienceLevel':
-              return values.includes(job.experience_level || '');
+              return values.includes(job.job_level || '');
             case 'remote':
-              return (values.includes('remote') && job.is_remote) || 
-                     (values.includes('onsite') && !job.is_remote);
+              return (values.includes('remote') && job.remote_work === 'Remote') || 
+                     (values.includes('hybrid') && job.remote_work === 'Hybrid') ||
+                     (values.includes('onsite') && job.remote_work === 'On-site');
             default:
               return true;
           }
@@ -324,13 +188,47 @@ const Search = () => {
     
     // Apply sorting
     if (sortBy === 'newest') {
-      result.sort((a, b) => new Date(b.posted_at).getTime() - new Date(a.posted_at).getTime());
+      result.sort((a, b) => new Date(b.date_posted).getTime() - new Date(a.date_posted).getTime());
     } else if (sortBy === 'match') {
-      result.sort((a, b) => (b.matchPercentage || 0) - (a.matchPercentage || 0));
+      result.sort((a, b) => {
+        // Sort by skills match if available
+        if (a.skills_required && b.skills_required) {
+          return b.skills_required.length - a.skills_required.length;
+        }
+        return 0;
+      });
     }
     
     setFilteredJobs(result);
-  }, [jobs, activeFilters, sortBy]);
+  }, [searchResults, activeFilters, sortBy]);
+
+  // Transform job data to match JobCard component expectations
+  const transformJobForCard = (job) => {
+    return {
+      id: job.job_id,
+      title: job.job_title,
+      company: job.company_name,
+      location: job.location || "Location not specified",
+      company_url: job.company_url,
+      salary: job.salary_range ? 
+        `${job.salary_range.currency} ${job.salary_range.min_amount?.toLocaleString()} - ${job.salary_range.max_amount?.toLocaleString()}` : 
+        undefined,
+      logo_url: job.company_logo,
+      description: job.job_description,
+      source: job.job_source,
+      source_url: job.job_url,
+      posted_at: job.date_posted,
+      is_remote: job.remote_work === 'Remote',
+      experience_level: job.job_level,
+      job_type: job.listing_type,
+      matchPercentage: job.skills_required ? Math.min(job.skills_required.length * 20, 100) : undefined,
+    };
+  };
+
+  // Determine loading state by combining context and local loading
+  const isLoading = isContextLoading || isLocalLoading;
+  // Use context error if available
+  const error = contextError;
 
   return (
     <div className="min-h-screen bg-premium-gradient text-white">
@@ -514,6 +412,22 @@ const Search = () => {
                     </div>
                   ))}
                 </div>
+              ) : error ? (
+                <div className="premium-glass rounded-lg p-8 text-center">
+                  <div className="mb-4 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-white/5">
+                    <X className="h-8 w-8 text-silver-500" />
+                  </div>
+                  <h3 className="text-xl font-medium mb-2">Error</h3>
+                  <p className="text-silver-400 mb-6">
+                    {error}
+                  </p>
+                  <button 
+                    onClick={() => window.location.reload()}
+                    className="premium-button rounded-lg px-6 py-2.5"
+                  >
+                    Try Again
+                  </button>
+                </div>
               ) : filteredJobs.length > 0 ? (
                 <div className={`${
                   viewMode === 'grid' 
@@ -521,7 +435,7 @@ const Search = () => {
                     : 'space-y-4'
                 }`}>
                   {filteredJobs.map((job) => (
-                    <JobCard key={job.id} job={job} />
+                    <JobCard key={job.job_id} job={transformJobForCard(job)} />
                   ))}
                 </div>
               ) : (

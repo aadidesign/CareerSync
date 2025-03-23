@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { 
@@ -21,133 +20,198 @@ import {
   Globe
 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import JobCard from '../components/JobCard';
 import Footer from '../components/Footer';
 
-// Mock data for a job
-const mockJob = {
-  id: '1',
-  title: 'Senior Frontend Developer',
-  company: 'TechCorp Solutions',
-  companyDescription: 'TechCorp Solutions is a leading technology company specializing in developing innovative software solutions for businesses across various industries. With a focus on cutting-edge technology and user-centric design, we help our clients transform their digital presence and operational efficiency.',
-  location: 'San Francisco, CA',
-  salary: '$120,000 - $150,000',
-  logoUrl: '',
-  description: 'We are looking for an experienced Frontend Developer to join our team and help build amazing web applications using React, TypeScript, and more. The ideal candidate will have a passion for creating exceptional user experiences and a track record of delivering high-quality code.',
+// Type definitions
+interface Job {
+  job_id: string;
+  job_title: string;
+  company_name: string;
+  company_url: string;
+  job_url: string;
+  location: string;
+  remote_work: string;
+  job_level: string;
+  job_source: string;
+  
+  // Additional properties for display (would be fetched from API in real app)
+  companyDescription?: string;
+  salary?: string;
+  fullDescription?: string;
+  expiresAt?: string;
+  employmentType?: string;
+  education?: string;
+  skills?: string[];
+  benefits?: string[];
+  company_size?: string;
+  industry?: string;
+  companyWebsite?: string;
+  companyLinkedIn?: string;
+  matchPercentage?: number;
+}
+
+interface SearchResults {
+  success: boolean;
+  data: {
+    jobs: Job[];
+    query: any;
+    results_count: number;
+  };
+  message: string;
+  timestamp: string;
+}
+
+// Placeholder data for job details not available in localStorage
+const placeholderJobDetails = {
+  companyDescription: 'A leading technology company specializing in innovative solutions.',
+  salary: 'Competitive',
   fullDescription: `
-    <p>We are seeking a talented and motivated Senior Frontend Developer to join our engineering team. The ideal candidate will be responsible for developing and implementing user interface components using React.js and other frontend technologies. You will work with the design team to translate UI/UX wireframes into responsive and interactive features.</p>
+    <p>This position requires expertise in the technologies mentioned in the job title and description.</p>
     
     <h4>Responsibilities:</h4>
     <ul>
-      <li>Develop new user-facing features using React.js and modern frontend technologies</li>
-      <li>Build reusable components and libraries for future use</li>
-      <li>Translate designs and wireframes into high-quality code</li>
-      <li>Optimize components for maximum performance across devices and browsers</li>
-      <li>Collaborate with backend developers to integrate frontend components with API services</li>
-      <li>Participate in code reviews and help maintain code quality across the frontend</li>
+      <li>Develop and maintain software applications</li>
+      <li>Collaborate with cross-functional teams</li>
+      <li>Participate in code reviews and ensure code quality</li>
+      <li>Troubleshoot and resolve technical issues</li>
     </ul>
     
     <h4>Requirements:</h4>
     <ul>
-      <li>5+ years of experience in frontend development</li>
-      <li>3+ years of experience with React.js</li>
-      <li>Strong proficiency in JavaScript, HTML, and CSS</li>
-      <li>Experience with modern frontend build pipelines and tools</li>
-      <li>Familiarity with RESTful APIs and modern authorization mechanisms</li>
-      <li>Understanding of server-side rendering and its benefits</li>
-      <li>Excellent problem-solving skills and attention to detail</li>
-      <li>Strong communication skills and ability to work in a team environment</li>
-    </ul>
-    
-    <h4>Nice to have:</h4>
-    <ul>
-      <li>Experience with TypeScript</li>
-      <li>Knowledge of state management libraries (Redux, MobX, etc.)</li>
-      <li>Understanding of CI/CD practices</li>
-      <li>Experience with testing frameworks (Jest, Enzyme, etc.)</li>
-    </ul>
-    
-    <h4>Benefits:</h4>
-    <ul>
-      <li>Competitive salary and equity package</li>
-      <li>Health, dental, and vision insurance</li>
-      <li>Flexible working hours and remote work options</li>
-      <li>Professional development budget</li>
-      <li>Regular team events and activities</li>
-      <li>Modern office in downtown San Francisco</li>
+      <li>Experience with relevant programming languages and frameworks</li>
+      <li>Strong problem-solving skills</li>
+      <li>Good communication abilities</li>
+      <li>Ability to work in a team environment</li>
     </ul>
   `,
-  source: 'LinkedIn',
-  sourceUrl: '#',
-  postedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
   expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
-  isRemote: false,
-  experienceLevel: 'senior' as const,
-  education: "Bachelor's degree in Computer Science or related field",
   employmentType: 'Full-time',
-  skills: [
-    'React', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Git', 'RESTful APIs', 'Redux'
-  ],
-  matchPercentage: 92,
-  benefits: [
-    'Health Insurance', 'Dental Insurance', 'Vision Insurance', 'Flexible Hours', 
-    'Remote Work Option', '401(k)', 'Professional Development'
-  ],
-  company_size: '50-200 employees',
+  education: "Bachelor's degree in Computer Science or related field",
+  skills: ['Java', 'Spring Boot', 'Hibernate', 'RESTful APIs', 'SQL'],
+  benefits: ['Health Insurance', 'Flexible Hours', 'Professional Development'],
+  company_size: '500+ employees',
   industry: 'Software Development',
   companyWebsite: 'https://example.com',
-  companyLinkedIn: 'https://linkedin.com/company/example'
+  matchPercentage: 85
 };
 
-// Similar jobs data
-const similarJobs = [
-  {
-    id: '2',
-    title: 'Frontend Developer',
-    company: 'InnovateTech',
-    location: 'New York, NY',
-    salary: '$100k - $130k',
-    logoUrl: '',
-    description: 'Join our dynamic team building next-generation web applications with React and TypeScript.',
-    source: 'Indeed',
-    sourceUrl: '#',
-    postedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
-    isRemote: false,
-    experienceLevel: 'mid' as const,
-    matchPercentage: 85,
-  },
-  {
-    id: '3',
-    title: 'Senior UI Developer',
-    company: 'DesignHub',
-    location: 'Remote',
-    salary: '$130k - $160k',
-    logoUrl: '',
-    description: 'Looking for a UI developer with strong React skills to create beautiful, responsive interfaces.',
-    source: 'Glassdoor',
-    sourceUrl: '#',
-    postedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
-    isRemote: true,
-    experienceLevel: 'senior' as const,
-    matchPercentage: 88,
-  },
-];
-
 const JobDetail = () => {
-  const { id } = useParams();
-  const [job] = useState(mockJob); // In real app, fetch job by ID
+  const { id } = useParams<{ id: string }>();
+  const [job, setJob] = useState<Job | null>(null);
+  const [similarJobs, setSimilarJobs] = useState<Job[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [isSaved, setIsSaved] = useState(false);
+  
+  useEffect(() => {
+    // Function to get job from localStorage
+    const getJobFromLocalStorage = () => {
+      try {
+        // Get job ID from URL params
+        const jobId = id;
+        
+        if (!jobId) {
+          throw new Error('No job ID provided');
+        }
+        
+        // Retrieve search results from localStorage
+        const searchResultsString = localStorage.getItem('searchResults');
+        
+        if (!searchResultsString) {
+          throw new Error('No search results found in localStorage');
+        }
+        
+        // Parse search results
+        const searchResults: SearchResults = JSON.parse(searchResultsString);
+        
+        if (!searchResults.success || !searchResults.data || !searchResults.data.jobs) {
+          throw new Error('Invalid search results data');
+        }
+        
+        // Find the job with matching ID
+        const foundJob = searchResults.data.jobs.find(job => job.job_id === jobId);
+        
+        if (!foundJob) {
+          throw new Error(`Job with ID ${jobId} not found`);
+        }
+        
+        // Merge with placeholder details for display purposes
+        const enhancedJob = {
+          ...foundJob,
+          ...placeholderJobDetails,
+          postedAt: new Date().toISOString() // Mock posted date
+        };
+        
+        setJob(enhancedJob);
+        
+        // Find similar jobs from the same data source
+        // We'll define "similar" as jobs with the same job_level or similar job_title
+        const otherJobs = searchResults.data.jobs.filter(j => j.job_id !== jobId);
+        
+        // Generate a simple similarity score based on job level and keywords in title
+        const scoredJobs = otherJobs.map(j => {
+          let score = 0;
+          
+          // Same job level gives points
+          if (j.job_level === foundJob.job_level) {
+            score += 30;
+          }
+          
+          // Check for common keywords in job titles
+          const currentJobWords = foundJob.job_title.toLowerCase().split(/\s+/);
+          const comparedJobWords = j.job_title.toLowerCase().split(/\s+/);
+          
+          currentJobWords.forEach(word => {
+            if (word.length > 3 && comparedJobWords.includes(word)) {
+              score += 15;
+            }
+          });
+          
+          // Same company gives some points (but not too many)
+          if (j.company_name === foundJob.company_name) {
+            score += 10;
+          }
+          
+          // Same location or both remote gives points
+          if (j.location === foundJob.location || 
+              (j.remote_work === 'Remote' && foundJob.remote_work === 'Remote')) {
+            score += 20;
+          }
+          
+          return {
+            ...j,
+            ...placeholderJobDetails,
+            matchPercentage: Math.min(Math.round(score), 99) // Cap at 99%
+          };
+        });
+        
+        // Sort by similarity score and take top 2
+        const topSimilarJobs = scoredJobs
+          .sort((a, b) => (b.matchPercentage || 0) - (a.matchPercentage || 0))
+          .slice(0, 2);
+        
+        setSimilarJobs(topSimilarJobs);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching job:', err);
+        setError(err instanceof Error ? err.message : 'Unknown error occurred');
+        setLoading(false);
+      }
+    };
+    
+    getJobFromLocalStorage();
+  }, [id]);
   
   // Function to calculate application deadline
   const getApplicationDeadline = () => {
+    if (!job?.expiresAt) return 'Not specified';
     const expiryDate = new Date(job.expiresAt);
     return `${expiryDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
   };
   
-  // Function to format posted date
+  // Function to format posted date (mock for now)
   const getPostedDate = () => {
-    const postedDate = new Date(job.postedAt);
-    return `${postedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
+    return `March 23, 2025`; // Using current date as mock
   };
   
   // Toggle saved state
@@ -155,22 +219,14 @@ const JobDetail = () => {
     setIsSaved(!isSaved);
   };
   
-  // Function to determine skill match class
-  const getSkillMatchClass = (percentage: number) => {
-    if (percentage >= 90) return 'bg-green-500';
-    if (percentage >= 70) return 'bg-teal-500';
-    if (percentage >= 50) return 'bg-yellow-500';
-    return 'bg-red-500';
-  };
-
   // Function to get experience level text
   const getExperienceLevelText = (level?: string) => {
     switch (level) {
-      case 'entry':
+      case 'entry_level':
         return 'Entry Level';
-      case 'mid':
+      case 'mid_level':
         return 'Mid Level';
-      case 'senior':
+      case 'senior_level':
         return 'Senior Level';
       case 'executive':
         return 'Executive';
@@ -179,11 +235,37 @@ const JobDetail = () => {
     }
   };
 
+  // Render loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-premium-gradient text-white flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-xl">Loading job details...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Render error state
+  if (error || !job) {
+    return (
+      <div className="min-h-screen bg-premium-gradient text-white flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl mb-4">Error Loading Job</h2>
+          <p className="text-silver-400">{error || 'Job not found'}</p>
+          <Link to="/search" className="inline-block mt-6 premium-button rounded-lg px-6 py-2.5 font-medium">
+            Back to Search
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-premium-gradient text-white">
       <Helmet>
-        <title>{job.title} at {job.company} | CareerSync</title>
-        <meta name="description" content={`Apply for ${job.title} position at ${job.company}. ${job.description.substring(0, 160)}...`} />
+        <title>{job.job_title} at {job.company_name} | CareerSync</title>
+        <meta name="description" content={`Apply for ${job.job_title} position at ${job.company_name}`} />
       </Helmet>
       
       <main className="pt-24 pb-20">
@@ -208,40 +290,32 @@ const JobDetail = () => {
               >
                 <div className="flex items-start gap-5">
                   <div className="h-16 w-16 rounded-md bg-white/10 flex items-center justify-center overflow-hidden flex-shrink-0 border border-white/10">
-                    {job.logoUrl ? (
-                      <img 
-                        src={job.logoUrl} 
-                        alt={`${job.company} logo`} 
-                        className="w-full h-full object-contain p-1" 
-                      />
-                    ) : (
-                      <Building className="h-8 w-8 text-silver-400" />
-                    )}
+                    <Building className="h-8 w-8 text-silver-400" />
                   </div>
                   
                   <div className="flex-1">
                     <h1 className="text-2xl md:text-3xl font-medium text-white mb-2">
-                      {job.title}
+                      {job.job_title}
                     </h1>
                     
                     <div className="flex items-center text-silver-300 mb-4">
-                      <span className="font-medium">{job.company}</span>
+                      <span className="font-medium">{job.company_name}</span>
                     </div>
                     
                     <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-silver-400">
                       <div className="flex items-center gap-1.5">
                         <MapPin className="h-4 w-4 text-navy-500" />
-                        {job.isRemote ? 'Remote' : job.location}
+                        {job.remote_work === 'Remote' ? 'Remote' : job.location}
                       </div>
                       
                       <div className="flex items-center gap-1.5">
                         <Briefcase className="h-4 w-4 text-navy-500" />
-                        {job.employmentType}
+                        {job.employmentType || 'Full-time'}
                       </div>
                       
                       <div className="flex items-center gap-1.5">
                         <DollarSign className="h-4 w-4 text-navy-500" />
-                        {job.salary}
+                        {job.salary || 'Not specified'}
                       </div>
                       
                       <div className="flex items-center gap-1.5">
@@ -255,7 +329,7 @@ const JobDetail = () => {
                 <div className="flex flex-wrap gap-3 mt-6">
                   <button 
                     className="premium-button rounded-lg px-6 py-2.5 font-medium flex items-center gap-2"
-                    onClick={() => window.open(job.sourceUrl, '_blank')}
+                    onClick={() => window.open(job.job_url, '_blank')}
                   >
                     Apply Now
                     <ExternalLink className="h-4 w-4" />
@@ -274,8 +348,7 @@ const JobDetail = () => {
                   <button 
                     className="premium-button-outline rounded-lg px-4 py-2.5 flex items-center gap-2"
                     onClick={() => navigator.share && navigator.share({
-                      title: `${job.title} at ${job.company}`,
-                      text: job.description,
+                      title: `${job.job_title} at ${job.company_name}`,
                       url: window.location.href,
                     })}
                   >
@@ -297,12 +370,12 @@ const JobDetail = () => {
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-silver-300">Overall Match</span>
-                    <span className="font-medium text-white">{job.matchPercentage}%</span>
+                    <span className="font-medium text-white">{job.matchPercentage || 80}%</span>
                   </div>
                   <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
                     <div 
                       className="h-full bg-gradient-to-r from-navy-500 to-teal-500 rounded-full"
-                      style={{ width: `${job.matchPercentage}%` }}
+                      style={{ width: `${job.matchPercentage || 80}%` }}
                     />
                   </div>
                 </div>
@@ -311,7 +384,7 @@ const JobDetail = () => {
                   <div>
                     <h3 className="text-sm font-medium text-silver-300 mb-3">Skills Match</h3>
                     <ul className="space-y-2">
-                      {job.skills.slice(0, 5).map((skill, index) => (
+                      {(job.skills || ['Java', 'Spring Boot', 'Hibernate', 'RESTful APIs', 'SQL']).slice(0, 5).map((skill, index) => (
                         <li key={index} className="flex items-center justify-between">
                           <span className="text-sm text-silver-400">{skill}</span>
                           <span className={`px-2 py-0.5 rounded-full text-xs text-white ${
@@ -358,7 +431,7 @@ const JobDetail = () => {
                 <h2 className="text-xl font-medium mb-4">Job Description</h2>
                 <div 
                   className="prose prose-invert max-w-none text-silver-300"
-                  dangerouslySetInnerHTML={{ __html: job.fullDescription }}
+                  dangerouslySetInnerHTML={{ __html: job.fullDescription || '<p>Please visit the job link for a detailed description.</p>' }}
                 />
               </motion.div>
               
@@ -369,7 +442,7 @@ const JobDetail = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
               >
-                <h2 className="text-xl font-medium mb-4">About {job.company}</h2>
+                <h2 className="text-xl font-medium mb-4">About {job.company_name}</h2>
                 <p className="text-silver-300 mb-4">{job.companyDescription}</p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
@@ -382,17 +455,17 @@ const JobDetail = () => {
                       </li>
                       <li className="flex items-center gap-2">
                         <Briefcase className="h-4 w-4 text-navy-500" />
-                        <span className="text-sm text-silver-400">{job.industry}</span>
+                        <span className="text-sm text-silver-400">{job.industry || 'Software Development'}</span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Globe className="h-4 w-4 text-navy-500" />
                         <a 
-                          href={job.companyWebsite} 
+                          href={job.company_url} 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="text-sm text-navy-400 hover:text-navy-300 transition-colors"
                         >
-                          Company Website
+                          Company LinkedIn
                         </a>
                       </li>
                     </ul>
@@ -401,7 +474,7 @@ const JobDetail = () => {
                   <div>
                     <h3 className="text-sm font-medium text-silver-300 mb-3">Benefits</h3>
                     <div className="flex flex-wrap gap-2">
-                      {job.benefits.map((benefit, index) => (
+                      {(job.benefits || ['Health Insurance', 'Flexible Hours', 'Professional Development']).map((benefit, index) => (
                         <span key={index} className="px-3 py-1 bg-white/5 rounded-full text-xs text-silver-400">
                           {benefit}
                         </span>
@@ -437,7 +510,7 @@ const JobDetail = () => {
                     <div>
                       <p className="text-sm font-medium text-silver-300">Experience Level</p>
                       <p className="text-silver-400">
-                        {getExperienceLevelText(job.experienceLevel)}
+                        {getExperienceLevelText(job.job_level)}
                       </p>
                     </div>
                   </div>
@@ -467,43 +540,39 @@ const JobDetail = () => {
                 </div>
                 
                 <div className="space-y-4">
-                  {similarJobs.map(job => (
-                    <Link to={`/job/${job.id}`} key={job.id} className="block">
-                      <div className="premium-card rounded-lg p-4 hover:bg-white/5 transition-all">
-                        <div className="flex items-start gap-3">
-                          <div className="h-10 w-10 rounded-md bg-white/10 flex items-center justify-center overflow-hidden flex-shrink-0 border border-white/10">
-                            {job.logoUrl ? (
-                              <img 
-                                src={job.logoUrl} 
-                                alt={`${job.company} logo`} 
-                                className="w-full h-full object-contain p-1" 
-                              />
-                            ) : (
+                  {similarJobs.length > 0 ? (
+                    similarJobs.map(similarJob => (
+                      <Link to={`/job/${similarJob.job_id}`} key={similarJob.job_id} className="block">
+                        <div className="premium-card rounded-lg p-4 hover:bg-white/5 transition-all">
+                          <div className="flex items-start gap-3">
+                            <div className="h-10 w-10 rounded-md bg-white/10 flex items-center justify-center overflow-hidden flex-shrink-0 border border-white/10">
                               <Building className="h-5 w-5 text-silver-400" />
-                            )}
-                          </div>
-                          
-                          <div>
-                            <h4 className="text-base font-medium text-white line-clamp-1">{job.title}</h4>
-                            <p className="text-sm text-silver-400 mb-1">{job.company}</p>
-                            <div className="flex items-center gap-2 text-xs text-silver-500">
-                              <span className="flex items-center gap-1">
-                                <MapPin className="h-3 w-3" />
-                                {job.isRemote ? 'Remote' : job.location}
-                              </span>
-                              
-                              {job.matchPercentage && (
-                                <span className="px-1.5 py-0.5 bg-teal-500/20 rounded-sm text-teal-300 flex items-center gap-1">
-                                  <CheckCircle className="h-3 w-3" />
-                                  {job.matchPercentage}% Match
+                            </div>
+                            
+                            <div>
+                              <h4 className="text-base font-medium text-white line-clamp-1">{similarJob.job_title}</h4>
+                              <p className="text-sm text-silver-400 mb-1">{similarJob.company_name}</p>
+                              <div className="flex items-center gap-2 text-xs text-silver-500">
+                                <span className="flex items-center gap-1">
+                                  <MapPin className="h-3 w-3" />
+                                  {similarJob.remote_work === 'Remote' ? 'Remote' : similarJob.location}
                                 </span>
-                              )}
+                                
+                                {similarJob.matchPercentage && (
+                                  <span className="px-1.5 py-0.5 bg-teal-500/20 rounded-sm text-teal-300 flex items-center gap-1">
+                                    <CheckCircle className="h-3 w-3" />
+                                    {similarJob.matchPercentage}% Match
+                                  </span>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </Link>
-                  ))}
+                      </Link>
+                    ))
+                  ) : (
+                    <p className="text-silver-400 text-sm">No similar jobs found.</p>
+                  )}
                 </div>
               </motion.div>
             </div>

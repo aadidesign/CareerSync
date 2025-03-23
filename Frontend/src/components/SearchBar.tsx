@@ -1,77 +1,146 @@
-
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Search, MapPin, X, Briefcase, Filter, ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-
-interface SearchFilters {
-  experienceLevel?: string;
-  jobType?: string;
-  datePosted?: string;
-  salary?: string;
-}
+import { useSearch } from '@/contexts/SearchContext';
+import { searchJobs } from '@/services/api';
 
 const SearchBar = () => {
-  const [jobTitle, setJobTitle] = useState('');
+  const { 
+    searchParams, 
+    setSearchParams,
+    setSearchResults,
+    setIsLoading,
+    setError
+  } = useSearch();
+  const [searchQuery, setSearchQuery] = useState('');
   const [location, setLocation] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
-  const [filters, setFilters] = useState<SearchFilters>({});
+  const [filters, setFilters] = useState({
+    site: 'all',
+    days_old: 7,
+    results: 10,
+    remote_only: false,
+  });
   const filtersRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const isInitialMount = useRef(true);
+  const [isLocalLoading, setIsLocalLoading] = useState(false);
+  const [localError, setLocalError] = useState<string | null>(null);
 
-  // Load saved search params on mount
+  // Update local state when searchParams change - ONLY on initial mount
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      
+      // Only set these values initially if they exist in searchParams
+      if (searchParams.search) setSearchQuery(searchParams.search);
+      if (searchParams.location) setLocation(searchParams.location);
+      
+      // Only update filters if any of them are defined in searchParams
+      if (searchParams.site || searchParams.days_old || searchParams.results || searchParams.remote_only !== undefined) {
+        setFilters({
+          site: searchParams.site || 'all',
+          days_old: searchParams.days_old || 7,
+          results: searchParams.results || 10,
+          remote_only: searchParams.remote_only || false,
+        });
+      }
+    }
+  }, []); // Empty dependency array - only runs once on mount
+
+  // Load saved search params from URL on mount
   useEffect(() => {
     const url = new URL(window.location.href);
     const q = url.searchParams.get('q');
     const loc = url.searchParams.get('location');
-    const expLevel = url.searchParams.get('experienceLevel');
-    const jType = url.searchParams.get('jobType');
-    const datePosted = url.searchParams.get('datePosted');
-    const salary = url.searchParams.get('salary');
+    const site = url.searchParams.get('site');
+    const daysOld = url.searchParams.get('days_old');
+    const results = url.searchParams.get('results');
+    const remoteOnly = url.searchParams.get('remote_only');
     
-    if (q) setJobTitle(q);
+    // Only set these values if they exist in URL
+    if (q) setSearchQuery(q);
     if (loc) setLocation(loc);
     
-    const newFilters: SearchFilters = {};
-    if (expLevel) newFilters.experienceLevel = expLevel;
-    if (jType) newFilters.jobType = jType;
-    if (datePosted) newFilters.datePosted = datePosted;
-    if (salary) newFilters.salary = salary;
+    const newFilters = { ...filters };
+    if (site) newFilters.site = site;
+    if (daysOld) newFilters.days_old = parseInt(daysOld);
+    if (results) newFilters.results = parseInt(results);
+    if (remoteOnly) newFilters.remote_only = remoteOnly === 'true';
     
-    if (Object.keys(newFilters).length > 0) {
-      setFilters(newFilters);
-    }
-  }, []);
+    setFilters(newFilters);
+  }, []); // Empty dependency array - only runs once on mount
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     const queryParams = new URLSearchParams();
     
-    if (jobTitle) queryParams.append('q', jobTitle);
+    if (searchQuery) queryParams.append('q', searchQuery);
     if (location) queryParams.append('location', location);
     
     // Add filters to query params
     Object.entries(filters).forEach(([key, value]) => {
-      if (value) queryParams.append(key, value);
+      if (value !== undefined) queryParams.append(key, value.toString());
     });
     
+    // First navigate to update the URL
     navigate(`/search?${queryParams.toString()}`);
+    
+    // Then explicitly fetch the data
+    setIsLocalLoading(true);
+    setLocalError(null);
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      // Prepare search parameters
+      const searchParams = {
+        search: searchQuery || '',
+        location: location || '',
+        site: filters.site,
+        days_old: filters.days_old,
+        results: filters.results,
+        remote_only: filters.remote_only
+      };
+      
+      // Call the API with the search parameters
+      const response = await searchJobs(searchParams);
+      
+      if (response.success) {
+        // Update the global context with the results
+        setSearchResults(response.data);
+        setIsLoading(false);
+      } else {
+        setError(response.message || 'Failed to fetch jobs');
+      }
+    } catch (err) {
+      console.error('Error fetching jobs:', err);
+      setError('Failed to fetch jobs. Please try again later.');
+    } finally {
+      setIsLocalLoading(false);
+    }
   };
 
   const clearSearch = () => {
-    setJobTitle('');
+    setSearchQuery('');
     setLocation('');
-    setFilters({});
+    setFilters({
+      site: 'all',
+      days_old: 7,
+      results: 10,
+      remote_only: false,
+    });
   };
   
-  const updateFilter = (key: keyof SearchFilters, value: string) => {
+  const updateFilter = useCallback((key: string, value: any) => {
     setFilters(prev => ({
       ...prev,
       [key]: value
     }));
-  };
+  }, []);
   
   // Close filters when clicking outside
   useEffect(() => {
@@ -101,15 +170,15 @@ const SearchBar = () => {
             type="text"
             placeholder="Job title, keywords, or company"
             className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-white px-3 py-1 placeholder-silver-600"
-            value={jobTitle}
-            onChange={(e) => setJobTitle(e.target.value)}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
-          {jobTitle && (
+          {searchQuery && (
             <button 
               type="button" 
-              onClick={() => setJobTitle('')}
+              onClick={() => setSearchQuery('')}
               className="text-silver-500 hover:text-white transition-colors"
               aria-label="Clear job title"
             >
@@ -176,68 +245,62 @@ const SearchBar = () => {
             ref={filtersRef}
           >
             <div className="premium-glass rounded-lg p-5 shadow-premium">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-silver-300">Experience Level</label>
+                  <label className="text-sm font-medium text-silver-300">Site</label>
                   <select 
                     className="w-full premium-glass text-white rounded-lg px-3 py-2 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none"
-                    value={filters.experienceLevel || ''}
-                    onChange={(e) => updateFilter('experienceLevel', e.target.value)}
+                    value={filters.site}
+                    onChange={(e) => updateFilter('site', e.target.value)}
                   >
-                    <option value="">All levels</option>
-                    <option value="entry">Entry Level</option>
-                    <option value="mid">Mid Level</option>
-                    <option value="senior">Senior Level</option>
-                    <option value="executive">Executive</option>
+                    <option value="all">All Sites</option>
+                    <option value="indeed">Indeed</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="glassdoor">Glassdoor</option>
+                    <option value="zip_recruiter">ZipRecruiter</option>
                   </select>
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-silver-300">Job Type</label>
+                  <label className="text-sm font-medium text-silver-300">Job Age (Days)</label>
                   <select 
                     className="w-full premium-glass text-white rounded-lg px-3 py-2 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none"
-                    value={filters.jobType || ''}
-                    onChange={(e) => updateFilter('jobType', e.target.value)}
+                    value={filters.days_old}
+                    onChange={(e) => updateFilter('days_old', parseInt(e.target.value))}
                   >
-                    <option value="">All types</option>
-                    <option value="full-time">Full-time</option>
-                    <option value="part-time">Part-time</option>
-                    <option value="contract">Contract</option>
-                    <option value="internship">Internship</option>
-                    <option value="temporary">Temporary</option>
+                    <option value="1">1 day</option>
+                    <option value="3">3 days</option>
+                    <option value="7">7 days</option>
+                    <option value="14">14 days</option>
+                    <option value="30">30 days</option>
                   </select>
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-silver-300">Date Posted</label>
+                  <label className="text-sm font-medium text-silver-300">Results Count</label>
                   <select 
                     className="w-full premium-glass text-white rounded-lg px-3 py-2 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none"
-                    value={filters.datePosted || ''}
-                    onChange={(e) => updateFilter('datePosted', e.target.value)}
+                    value={filters.results}
+                    onChange={(e) => updateFilter('results', parseInt(e.target.value))}
                   >
-                    <option value="">Any time</option>
-                    <option value="today">Today</option>
-                    <option value="week">Past week</option>
-                    <option value="month">Past month</option>
-                    <option value="3months">Past 3 months</option>
+                    <option value="5">5 results</option>
+                    <option value="10">10 results</option>
+                    <option value="20">20 results</option>
+                    <option value="50">50 results</option>
                   </select>
                 </div>
-                
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-silver-300">Salary Range</label>
-                  <select 
-                    className="w-full premium-glass text-white rounded-lg px-3 py-2 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none"
-                    value={filters.salary || ''}
-                    onChange={(e) => updateFilter('salary', e.target.value)}
-                  >
-                    <option value="">Any salary</option>
-                    <option value="0-50000">$0 - $50,000</option>
-                    <option value="50000-80000">$50,000 - $80,000</option>
-                    <option value="80000-120000">$80,000 - $120,000</option>
-                    <option value="120000-150000">$120,000 - $150,000</option>
-                    <option value="150000-">$150,000+</option>
-                  </select>
-                </div>
+              </div>
+              
+              <div className="mt-4">
+                <label className="inline-flex items-center gap-2 text-sm text-silver-400 cursor-pointer">
+                  <input 
+                    type="checkbox" 
+                    className="form-checkbox h-4 w-4 rounded border-white/20 text-navy-500 focus:ring-navy-500"
+                    checked={filters.remote_only}
+                    onChange={(e) => updateFilter('remote_only', e.target.checked)}
+                  />
+                  Remote jobs only
+                </label>
               </div>
               
               <div className="flex justify-between mt-5 pt-4 border-t border-white/10">
@@ -248,11 +311,10 @@ const SearchBar = () => {
                 >
                   Clear all filters
                 </button>
-                
                 <button
                   type="button"
                   onClick={() => setShowFilters(false)}
-                  className="premium-button-alt rounded-lg px-4 py-1.5 text-sm"
+                  className="premium-button rounded-lg px-4 py-1.5 text-sm font-medium"
                 >
                   Apply Filters
                 </button>
