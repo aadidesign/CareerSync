@@ -76,5 +76,5 @@ python model.py
 We welcome contributions! Feel free to fork the repository and submit pull requests.
 
 ---
-Made with ❤️ by **TechBro**
+Made with ❤️ by **[TechBro](https://github.com/TECH-BROO)**
 
