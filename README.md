@@ -52,24 +52,20 @@ cd careersync/Frontend
 # Install dependencies
 npm install
 
-# Start the backend server
-npm run server
+# Start the Frontend server
+npm run dev
 
-# Start the frontend
-npm start
 ```
 
 ```bash
-cd careersync/jobSpy
+cd careersync/Crawler
 
 # Install dependencies
 pip install -r requirenments.txt
 
 # Start the backend server
-npm run server
+python json_api_server.py
 
-# Start the crawler
-python model.py
 ```
 
 ## 🤝 Contributing
