@@ -26,56 +26,62 @@ const SearchBar = () => {
   const filtersRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const isInitialMount = useRef(true);
-  const [isLocalLoading, setIsLocalLoading] = useState(false);
-  const [localError, setLocalError] = useState<string | null>(null);
 
-  // Update local state when searchParams change - ONLY on initial mount
+  // Fix: Combine the two separate useEffect hooks for initializing state from URL and context
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
       
-      // Only set these values initially if they exist in searchParams
-      if (searchParams.search) setSearchQuery(searchParams.search);
-      if (searchParams.location) setLocation(searchParams.location);
+      // Get parameters from URL first
+      const url = new URL(window.location.href);
+      const q = url.searchParams.get('q');
+      const loc = url.searchParams.get('location');
+      const site = url.searchParams.get('site');
+      const daysOld = url.searchParams.get('days_old');
+      const results = url.searchParams.get('results');
+      const remoteOnly = url.searchParams.get('remote_only');
       
-      // Only update filters if any of them are defined in searchParams
-      if (searchParams.site || searchParams.days_old || searchParams.results || searchParams.remote_only !== undefined) {
-        setFilters({
-          site: searchParams.site || 'all',
-          days_old: searchParams.days_old || 7,
-          results: searchParams.results || 10,
-          remote_only: searchParams.remote_only || false,
-        });
-      }
+      // Set search query and location
+      setSearchQuery(q || searchParams.search || '');
+      setLocation(loc || searchParams.location || '');
+      
+      // Initialize filters from URL or context or defaults
+      setFilters({
+        site: site || searchParams.site || 'all',
+        days_old: daysOld ? parseInt(daysOld) : (searchParams.days_old || 7),
+        results: results ? parseInt(results) : (searchParams.results || 10),
+        remote_only: remoteOnly ? remoteOnly === 'true' : (searchParams.remote_only || false),
+      });
+      
+      // Update context search params to match what we've set locally
+      setSearchParams({
+        search: q || searchParams.search || '',
+        location: loc || searchParams.location || '',
+        site: site || searchParams.site || 'all',
+        days_old: daysOld ? parseInt(daysOld) : (searchParams.days_old || 7),
+        results: results ? parseInt(results) : (searchParams.results || 10),
+        remote_only: remoteOnly ? remoteOnly === 'true' : (searchParams.remote_only || false),
+      });
     }
-  }, []); // Empty dependency array - only runs once on mount
-
-  // Load saved search params from URL on mount
-  useEffect(() => {
-    const url = new URL(window.location.href);
-    const q = url.searchParams.get('q');
-    const loc = url.searchParams.get('location');
-    const site = url.searchParams.get('site');
-    const daysOld = url.searchParams.get('days_old');
-    const results = url.searchParams.get('results');
-    const remoteOnly = url.searchParams.get('remote_only');
-    
-    // Only set these values if they exist in URL
-    if (q) setSearchQuery(q);
-    if (loc) setLocation(loc);
-    
-    const newFilters = { ...filters };
-    if (site) newFilters.site = site;
-    if (daysOld) newFilters.days_old = parseInt(daysOld);
-    if (results) newFilters.results = parseInt(results);
-    if (remoteOnly) newFilters.remote_only = remoteOnly === 'true';
-    
-    setFilters(newFilters);
-  }, []); // Empty dependency array - only runs once on mount
+  }, [searchParams, setSearchParams]); // Added dependencies to fix React hooks exhaustive deps warning
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Create search parameters object
+    const newSearchParams = {
+      search: searchQuery,
+      location: location,
+      site: filters.site,
+      days_old: filters.days_old,
+      results: filters.results,
+      remote_only: filters.remote_only
+    };
+    
+    // Update context
+    setSearchParams(newSearchParams);
+    
+    // Build URL query parameters
     const queryParams = new URLSearchParams();
     
     if (searchQuery) queryParams.append('q', searchQuery);
@@ -86,33 +92,20 @@ const SearchBar = () => {
       if (value !== undefined) queryParams.append(key, value.toString());
     });
     
-    // First navigate to update the URL
+    // Update URL
     navigate(`/search?${queryParams.toString()}`);
     
-    // Then explicitly fetch the data
-    setIsLocalLoading(true);
-    setLocalError(null);
+    // Show loading state and clear previous errors
     setIsLoading(true);
     setError(null);
     
     try {
-      // Prepare search parameters
-      const searchParams = {
-        search: searchQuery || '',
-        location: location || '',
-        site: filters.site,
-        days_old: filters.days_old,
-        results: filters.results,
-        remote_only: filters.remote_only
-      };
-      
       // Call the API with the search parameters
-      const response = await searchJobs(searchParams);
+      const response = await searchJobs(newSearchParams);
       
       if (response.success) {
         // Update the global context with the results
         setSearchResults(response.data);
-        setIsLoading(false);
       } else {
         setError(response.message || 'Failed to fetch jobs');
       }
@@ -120,7 +113,7 @@ const SearchBar = () => {
       console.error('Error fetching jobs:', err);
       setError('Failed to fetch jobs. Please try again later.');
     } finally {
-      setIsLocalLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -157,29 +150,30 @@ const SearchBar = () => {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative z-10 max-w-5xl mx-auto">
       <form 
         onSubmit={handleSubmit}
-        className={`premium-glass rounded-lg flex flex-col md:flex-row items-center transition-all duration-400 ${
-          isFocused ? 'shadow-premium border-white/10' : ''
-        }`}
+        className={`premium-glass rounded-xl flex flex-col md:flex-row items-center transition-all duration-300 ${
+          isFocused ? 'shadow-premium border border-white/20' : 'border border-white/10'
+        } backdrop-blur-xl overflow-hidden`}
       >
-        <div className="relative flex items-center flex-1 w-full px-4 py-4 border-b md:border-b-0 md:border-r border-white/10">
-          <Briefcase className="h-5 w-5 text-silver-500 flex-shrink-0" />
+        <div className="relative flex items-center flex-1 w-full px-4 md:px-6 py-4 border-b md:border-b-0 md:border-r border-white/10 group">
+          <Briefcase className="h-5 w-5 text-silver-500 group-focus-within:text-navy-400 transition-colors" />
           <input
             type="text"
             placeholder="Job title, keywords, or company"
-            className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-white px-3 py-1 placeholder-silver-600"
+            className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-white px-3 py-1.5 placeholder-silver-600 text-base"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
+            style={{ backgroundColor: 'transparent', WebkitBackgroundColor: 'transparent' }}
           />
           {searchQuery && (
             <button 
               type="button" 
               onClick={() => setSearchQuery('')}
-              className="text-silver-500 hover:text-white transition-colors"
+              className="text-silver-500 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
               aria-label="Clear job title"
             >
               <X className="h-4 w-4" />
@@ -187,22 +181,23 @@ const SearchBar = () => {
           )}
         </div>
         
-        <div className="relative flex items-center flex-1 w-full px-4 py-4">
-          <MapPin className="h-5 w-5 text-silver-500 flex-shrink-0" />
+        <div className="relative flex items-center flex-1 w-full px-4 md:px-6 py-4 group">
+          <MapPin className="h-5 w-5 text-silver-500 group-focus-within:text-navy-400 transition-colors" />
           <input
             type="text"
             placeholder="Location or Remote"
-            className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-white px-3 py-1 placeholder-silver-600"
+            className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-white px-3 py-1.5 placeholder-silver-600 text-base"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
+            style={{ backgroundColor: 'transparent', WebkitBackgroundColor: 'transparent' }}
           />
           {location && (
             <button 
               type="button" 
               onClick={() => setLocation('')}
-              className="text-silver-500 hover:text-white transition-colors"
+              className="text-silver-500 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
               aria-label="Clear location"
             >
               <X className="h-4 w-4" />
@@ -210,25 +205,25 @@ const SearchBar = () => {
           )}
         </div>
         
-        <div className="flex p-4 gap-2 w-full md:w-auto">
+        <div className="flex p-4 md:p-3 gap-2 w-full md:w-auto">
           <button
             type="button"
             onClick={() => setShowFilters(!showFilters)}
-            className="premium-button-outline rounded-lg px-4 py-2.5 flex items-center gap-2"
+            className="premium-button-outline rounded-lg px-3 md:px-4 py-2.5 flex items-center gap-2 hover:bg-white/5 transition-colors"
             aria-expanded={showFilters}
             aria-controls="search-filters"
           >
             <Filter className="h-4 w-4" />
-            <span className="hidden sm:inline">Filters</span>
+            <span className="hidden sm:inline text-sm font-medium">Filters</span>
             <ChevronDown className={`h-4 w-4 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
           </button>
           
           <button
             type="submit"
-            className="premium-button rounded-lg px-6 py-2.5 font-medium flex-1 flex items-center justify-center gap-2"
+            className="premium-button rounded-lg px-4 md:px-6 py-2.5 font-medium flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-navy-500 to-purple-600 hover:from-navy-600 hover:to-purple-700 transition-all duration-300"
           >
             <Search className="h-4 w-4" />
-            <span className="hidden sm:inline">Search</span>
+            <span className="hidden sm:inline text-sm">Search</span>
           </button>
         </div>
       </form>
@@ -237,21 +232,22 @@ const SearchBar = () => {
       <AnimatePresence>
         {showFilters && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            exit={{ opacity: 0, y: -5 }}
             transition={{ duration: 0.2 }}
-            className="absolute z-10 mt-2 w-full"
+            className="absolute z-20 mt-2 w-full"
             ref={filtersRef}
           >
-            <div className="premium-glass rounded-lg p-5 shadow-premium">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="premium-glass rounded-xl p-5 shadow-premium border border-white/10 backdrop-blur-md">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-silver-300">Site</label>
+                  <label className="text-sm font-medium text-silver-300">Job Board</label>
                   <select 
-                    className="w-full premium-glass text-white rounded-lg px-3 py-2 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none"
+                    className="w-full premium-glass text-white rounded-lg px-3 py-2.5 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none bg-blue-600 appearance-none"
                     value={filters.site}
                     onChange={(e) => updateFilter('site', e.target.value)}
+                    style={{ backgroundColor: 'transparent', WebkitBackgroundColor: 'transparent', backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik02IDFMMS41IDZMMTAuNSA2TDYgMVoiIGZpbGw9IndoaXRlIiBzdHJva2U9IndoaXRlIi8+Cjwvc3ZnPgo=')", backgroundRepeat: "no-repeat", backgroundPosition: "right 0.75rem center", paddingRight: "2.5rem" }}
                   >
                     <option value="all">All Sites</option>
                     <option value="indeed">Indeed</option>
@@ -262,26 +258,28 @@ const SearchBar = () => {
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-silver-300">Job Age (Days)</label>
+                  <label className="text-sm font-medium text-silver-300">Job Age</label>
                   <select 
-                    className="w-full premium-glass text-white rounded-lg px-3 py-2 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none"
+                    className="w-full premium-glass text-white rounded-lg px-3 py-2.5 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none bg-bg-blue-600 appearance-none"
                     value={filters.days_old}
                     onChange={(e) => updateFilter('days_old', parseInt(e.target.value))}
+                    style={{ backgroundColor: 'transparent', WebkitBackgroundColor: 'transparent', backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik02IDFMMS41IDZMMTAuNSA2TDYgMVoiIGZpbGw9IndoaXRlIiBzdHJva2U9IndoaXRlIi8+Cjwvc3ZnPgo=')", backgroundRepeat: "no-repeat", backgroundPosition: "right 0.75rem center", paddingRight: "2.5rem" }}
                   >
-                    <option value="1">1 day</option>
-                    <option value="3">3 days</option>
-                    <option value="7">7 days</option>
-                    <option value="14">14 days</option>
-                    <option value="30">30 days</option>
+                    <option value="1">Last 24 hours</option>
+                    <option value="3">Last 3 days</option>
+                    <option value="7">Last 7 days</option>
+                    <option value="14">Last 14 days</option>
+                    <option value="30">Last 30 days</option>
                   </select>
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-silver-300">Results Count</label>
+                  <label className="text-sm font-medium text-silver-300">Results Per Page</label>
                   <select 
-                    className="w-full premium-glass text-white rounded-lg px-3 py-2 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none"
+                    className="w-full premium-glass text-white rounded-lg px-3 py-2.5 border border-white/10 focus:border-navy-500 focus:ring-1 focus:ring-navy-500 focus:outline-none bg-bg-blue-600 appearance-none"
                     value={filters.results}
                     onChange={(e) => updateFilter('results', parseInt(e.target.value))}
+                    style={{ backgroundColor: 'transparent', WebkitBackgroundColor: 'transparent', backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik02IDFMMS41IDZMMTAuNSA2TDYgMVoiIGZpbGw9IndoaXRlIiBzdHJva2U9IndoaXRlIi8+Cjwvc3ZnPgo=')", backgroundRepeat: "no-repeat", backgroundPosition: "right 0.75rem center", paddingRight: "2.5rem" }}
                   >
                     <option value="5">5 results</option>
                     <option value="10">10 results</option>
@@ -291,15 +289,20 @@ const SearchBar = () => {
                 </div>
               </div>
               
-              <div className="mt-4">
-                <label className="inline-flex items-center gap-2 text-sm text-silver-400 cursor-pointer">
-                  <input 
-                    type="checkbox" 
-                    className="form-checkbox h-4 w-4 rounded border-white/20 text-navy-500 focus:ring-navy-500"
-                    checked={filters.remote_only}
-                    onChange={(e) => updateFilter('remote_only', e.target.checked)}
-                  />
-                  Remote jobs only
+              <div className="mt-5">
+                <label className="inline-flex items-center gap-2 text-sm text-silver-300 cursor-pointer group">
+                  <div className="relative flex items-center">
+                    <input 
+                      type="checkbox" 
+                      className="peer sr-only"
+                      checked={filters.remote_only}
+                      onChange={(e) => updateFilter('remote_only', e.target.checked)}
+                    />
+                    <div className="h-5 w-5 rounded border border-white/20 bg-transparent peer-checked:bg-navy-500 peer-checked:border-navy-500 transition-all flex items-center justify-center">
+                      {filters.remote_only && <div className="text-white"><svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 4L4.5 7.5L11 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>}
+                    </div>
+                  </div>
+                  <span className="group-hover:text-white transition-colors">Remote jobs only</span>
                 </label>
               </div>
               
@@ -307,14 +310,15 @@ const SearchBar = () => {
                 <button
                   type="button"
                   onClick={clearSearch}
-                  className="text-silver-400 text-sm hover:text-white transition-colors"
+                  className="text-silver-400 text-sm hover:text-white transition-colors flex items-center gap-1 hover:underline"
                 >
+                  <X className="h-3.5 w-3.5" />
                   Clear all filters
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowFilters(false)}
-                  className="premium-button rounded-lg px-4 py-1.5 text-sm font-medium"
+                  className="premium-button rounded-lg px-4 py-2 text-sm font-medium bg-gradient-to-r from-navy-500 to-purple-600 hover:from-navy-600 hover:to-purple-700 transition-all duration-300"
                 >
                   Apply Filters
                 </button>
