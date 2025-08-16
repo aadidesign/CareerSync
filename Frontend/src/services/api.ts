@@ -10,10 +10,18 @@ export const searchJobs = async (params: {
   remote_only?: boolean;
 }) => {
   try {
+    // Get the current session to extract the access token
+    const { data: { session } } = await supabase.auth.getSession();
+    
+    if (!session) {
+      throw new Error('Authentication required. Please log in to search for jobs.');
+    }
+
     const response = await fetch('https://careersync-m6ct.onrender.com/api/search', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session.access_token}`,
       },
       body: JSON.stringify({
         search: params.search || '',
@@ -26,6 +34,9 @@ export const searchJobs = async (params: {
     });
 
     if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Authentication failed. Please log in again.');
+      }
       throw new Error('Network response was not ok');
     }
 

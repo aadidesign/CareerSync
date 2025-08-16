@@ -3,12 +3,15 @@ JobSpy JSON API Server
 
 A clean REST API for job searching that communicates exclusively using JSON.
 Optimized for GET requests for job searching with proper RESTful design.
+Requires authentication for job search endpoints.
 """
 
 import os
 import json
 import traceback
+import jwt
 from datetime import datetime
+from functools import wraps
 from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 from enhanced_job_scraper import scrape_jobs_with_filters, format_job_data_to_json
@@ -21,6 +24,80 @@ CORS(app)  # Enable Cross-Origin Resource Sharing to allow frontend access
 DEFAULT_PORT = 5000
 DEFAULT_HOST = "0.0.0.0"
 REQUEST_LIMIT = 100  # Maximum number of results per site
+
+# JWT Configuration - Replace with your actual Supabase JWT secret
+JWT_SECRET = os.environ.get('SUPABASE_JWT_SECRET', 'your-supabase-jwt-secret')
+SUPABASE_URL = os.environ.get('SUPABASE_URL', 'https://your-project.supabase.co')
+
+def verify_supabase_jwt(token):
+    """
+    Verify a Supabase JWT token.
+    In production, you should verify against Supabase's public key.
+    """
+    try:
+        # Decode the JWT token
+        payload = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
+        
+        # Check if token is expired
+        if 'exp' in payload and datetime.utcfromtimestamp(payload['exp']) < datetime.utcnow():
+            return None, "Token expired"
+        
+        # Verify it's a Supabase token
+        if 'iss' not in payload or not payload['iss'].startswith(SUPABASE_URL):
+            return None, "Invalid token issuer"
+        
+        return payload, None
+        
+    except jwt.ExpiredSignatureError:
+        return None, "Token expired"
+    except jwt.InvalidTokenError:
+        return None, "Invalid token"
+    except Exception as e:
+        return None, f"Token verification failed: {str(e)}"
+
+def require_auth(f):
+    """Decorator to require authentication for protected endpoints"""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        # Get the authorization header
+        auth_header = request.headers.get('Authorization')
+        
+        if not auth_header:
+            return create_response(
+                success=False, 
+                message="Authentication required", 
+                error="missing_token", 
+                status_code=401
+            )
+        
+        # Check if it's a Bearer token
+        if not auth_header.startswith('Bearer '):
+            return create_response(
+                success=False, 
+                message="Invalid authorization header format", 
+                error="invalid_header", 
+                status_code=401
+            )
+        
+        token = auth_header.split(' ')[1]
+        
+        # Verify the JWT token
+        payload, error_msg = verify_supabase_jwt(token)
+        
+        if not payload:
+            return create_response(
+                success=False, 
+                message=error_msg, 
+                error="invalid_token", 
+                status_code=401
+            )
+        
+        # Add user info to request context
+        request.user = payload
+        
+        return f(*args, **kwargs)
+    
+    return decorated_function
 
 # Standard JSON response structure
 def create_response(success=True, data=None, message=None, error=None, status_code=200):
@@ -73,10 +150,12 @@ def get_supported_sites():
     return create_response(data=sites_data)
 
 @app.route('/api/search', methods=['GET', 'POST'])
+@require_auth
 def search_jobs():
     """
     Search for jobs based on provided parameters.
     
+    Requires authentication via Bearer token in Authorization header.
     Accepts both GET requests with query parameters and POST requests with JSON body.
     GET is the recommended and RESTful approach for retrieving job data.
     
@@ -88,10 +167,17 @@ def search_jobs():
     - results: Maximum number of results per site (default: 10, max: 100)
     - remote_only: Filter for remote jobs only (default: false)
     
+    Headers:
+    - Authorization: Bearer <jwt_token>
+    
     Returns:
         JSON response with scraped job data
     """
     try:
+        # Log the authenticated user
+        user_id = request.user.get('sub', 'unknown')
+        print(f"Job search request from user: {user_id}")
+        
         # Determine if request is GET or POST and extract parameters
         if request.method == 'POST':
             # Get parameters from JSON body

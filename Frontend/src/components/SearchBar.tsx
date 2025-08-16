@@ -3,7 +3,9 @@ import { Search, MapPin, X, Briefcase, Filter, ChevronDown } from 'lucide-react'
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSearch } from '@/contexts/SearchContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { searchJobs } from '@/services/api';
+import { toast } from '@/components/ui/use-toast';
 
 const SearchBar = () => {
   const { 
@@ -13,6 +15,7 @@ const SearchBar = () => {
     setIsLoading,
     setError
   } = useSearch();
+  const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [location, setLocation] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -67,6 +70,17 @@ const SearchBar = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Check if user is authenticated
+    if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "Please log in to search for jobs.",
+        variant: "destructive",
+      });
+      navigate('/auth');
+      return;
+    }
     
     // Create search parameters object
     const newSearchParams = {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { 
   Filter, 
@@ -18,13 +18,17 @@ import {
   Banknote,
   Wifi,
   Clock3,
-  CalendarDays
+  CalendarDays,
+  LogIn
 } from 'lucide-react';
 import JobCard from '../components/JobCard';
 import SearchBar from '../components/SearchBar';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
 import { useSearch } from '@/contexts/SearchContext';
+import { useAuth } from '@/contexts/AuthContext';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 // Update mockJobs structure to match API response format
 const mockJobs = [
@@ -82,6 +86,8 @@ const filterCategories = [
 
 const Search = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, isLoading: authLoading } = useAuth();
   const { 
     searchParams, 
     searchResults, 
@@ -229,6 +235,69 @@ const Search = () => {
   const isLoading = isContextLoading || isLocalLoading;
   // Use context error if available
   const error = contextError;
+
+  // Show loading state while checking authentication
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-premium-gradient text-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+          <p className="text-silver-400">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show authentication required message if user is not logged in
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-premium-gradient text-white">
+        <Helmet>
+          <title>Authentication Required | CareerSync</title>
+          <meta name="description" content="Please log in to search for jobs on CareerSync" />
+        </Helmet>
+        
+        <main className="pt-24 pb-20">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="max-w-md mx-auto text-center">
+              <Card className="premium-glass border-white/10">
+                <CardHeader>
+                  <div className="mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-white/5 mb-4">
+                    <LogIn className="h-8 w-8 text-navy-500" />
+                  </div>
+                  <CardTitle className="text-2xl font-semibold">Authentication Required</CardTitle>
+                  <CardDescription className="text-silver-400">
+                    You need to be logged in to search for jobs and access all features.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <Button 
+                    onClick={() => navigate('/auth')}
+                    className="w-full premium-button"
+                    size="lg"
+                  >
+                    <LogIn className="h-4 w-4 mr-2" />
+                    Log In
+                  </Button>
+                  <p className="text-sm text-silver-400">
+                    Don't have an account?{' '}
+                    <button 
+                      onClick={() => navigate('/auth?mode=register')}
+                      className="text-navy-500 hover:text-teal-500 transition-colors underline"
+                    >
+                      Sign up here
+                    </button>
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </main>
+        
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-premium-gradient text-white">

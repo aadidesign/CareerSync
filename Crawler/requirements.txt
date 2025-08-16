@@ -15,3 +15,4 @@ bs4
 pydantic 
 tls_client
 markdownify
+PyJWT>=2.8.0

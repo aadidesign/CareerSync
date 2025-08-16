@@ -1,0 +1,461 @@
+[
+  {
+    "job_id": "in-e7fd2a083e47182a",
+    "job_title": "Software Engineer, Prime Video Sports",
+    "company_name": "Amazon.com",
+    "job_url": "https://www.indeed.com/viewjob?jk=e7fd2a083e47182a",
+    "job_source": "indeed",
+    "job_description": "**DESCRIPTION**\n---------------\n\nWant to change the way people watch Live Sports? Passionate about building, owning and operating massively scalable systems? Looking forward to work with a team of highly competent software engineers ranging from new graduates to seasoned architects building software using the latest AWS technologies? Are you looking for an inclusive team, where you feel safe to be yourself, to share your ideas openly, to experiment, fail and learn, and where you help make decisions that shape the team’s path forward? If so, here is an opportunity tailored for you.\n  \n  \nWho we are?  \nWe are the Prime Video Live Events team, revolutionize the way our customers search, discover and enjoy live events from sports, to music, to breaking news and political debates. In September 2018 we launched our first full-scale live streaming experience to all of our world-wide Prime customers with NFL’s Thursday Night Football. In just a year, we delivered multi-game watching experience to our Prime Video customers in UK for English Premier League . That was just the start. We are expanding and looking for engineers to build innovative solutions for customer to discover engaging and personalized live content to enjoy. This is a transformative opportunity, the chance to be at the vanguard of a program that will revolutionize Prime Video, and the live streaming experience for customers everywhere. Our team is building a wide variety of services from low-latency, high-TPS services that control the lifecycle of live events and help customers discover live or upcoming games on variety of devices including Alexa and to engage customer on Prime Video content offline and through social-media platforms. If you’re a strong engineer, there’s a home for you in Prime Video Live Events. Our leaders are great teachers, our engineers are world-class, and our products are fun.  \n  \nWhat will you do?  \nWe are looking for smart, motivated Software Development Engineers who can help in building personalized discovery experience for thousands of live streaming events available world-wide using technologies like machine learning. If you have experience building large-scale, high-performance, customer-friendly products and are interested in designing and implementing distributed systems to handle large datasets, complex domains, and problems at Amazon scale, this is the job for you. This is an exciting role, offering a customer-obsessed engineer to learn and use a broad array of technologies to make a real impact. Our architecture leverages the latest in AWS cloud technologies including EC2, S3, DynamoDB, Kinesis, and Cloudfront in supporting billions of requests from millions of Prime Video users.\n  \n  \nIf you’re excited about helping to build the future of live event streaming or just want to have fun creating something you can be proud to show your family and friends, reach out. We’d love to chat.\n\n**BASIC QUALIFICATIONS**\n------------------------\n\n* 3+ years of non-internship professional software development experience\n* 2+ years of non-internship design or architecture (design patterns, reliability and scaling) of new and existing systems experience\n* Experience programming with at least one software programming language\n\n**PREFERRED QUALIFICATIONS**\n----------------------------\n\n* 3+ years of full software development life cycle, including coding standards, code reviews, source control management, build processes, testing, and operations experience\n* Bachelor's degree in computer science or equivalent\n\n  \nAmazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status.  \n  \nLos Angeles County applicants: Job duties for this position include: work safely and cooperatively with other employees, supervisors, and staff; adhere to standards of excellence despite stressful conditions; communicate effectively and respectfully with employees, supervisors, and staff to ensure exceptional customer service; and follow all federal, state, and local laws and Company policies. Criminal history may have a direct, adverse, and negative relationship with some of the material job duties of this position. These include the duties and responsibilities listed above, as well as the abilities to adhere to company policies, exercise sound judgment, effectively manage stress and work safely and respectfully with others, exhibit trustworthiness and professionalism, and safeguard business operations and the Company’s reputation. Pursuant to the Los Angeles County Fair Chance Ordinance, we will consider for employment qualified applicants with arrest and conviction records.  \n  \nPursuant to the San Francisco Fair Chance Ordinance, we will consider for employment qualified applicants with arrest and conviction records.  \n  \nOur inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit https://amazon.jobs/content/en/how-we-hire/accommodations for more information. If the country/region you’re applying in isn’t listed, please contact your Recruiting Partner.  \n  \nOur compensation reflects the cost of labor across several US geographic markets. The base pay for this position ranges from $129,300/year in our lowest geographic market up to $223,600/year in our highest geographic market. Pay is based on a number of factors including market location and may vary depending on job-related knowledge, skills, and experience. Amazon is a total compensation company. Dependent on the position offered, equity, sign-on payments, and other forms of compensation may be provided as part of a total compensation package, in addition to a full range of medical, financial, and/or other benefits. For more information, please visit https://www.aboutamazon.com/workplace/employee-benefits. This position will remain posted until filled. Applicants should apply via our internal or external career site.",
+    "job_type": "fulltime",
+    "location": "New York, NY, US",
+    "date_posted": "2025-04-03T00:00:00",
+    "company_industry": "Internet And Software",
+    "company_url": "https://www.indeed.com/cmp/Amazon.com",
+    "company_logo": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/256x256/3e9d43f5c277de169808abdcaf49ba2c",
+    "company_address": "440 Terry Ave N, Seattle, WA, United States, Washington",
+    "company_size": "10,000+",
+    "company_revenue": "more than $10B (USD)",
+    "company_description": "Our mission is to be Earth's most customer-centric company.",
+    "remote_work": "On-site",
+    "salary_range": {
+      "min_amount": 129300.0,
+      "max_amount": 223600.0,
+      "currency": "USD"
+    },
+    "days_ago": 135,
+    "experience_range": {
+      "min_years": 3,
+      "max_years": 8
+    },
+    "job_level": "senior_level",
+    "skills_required": [
+      "aws",
+      "machine learning"
+    ]
+  },
+  {
+    "job_id": "in-ef00833903d1c3b3",
+    "job_title": "Software Development Engineer, Search - Prime Video",
+    "company_name": "Amazon.com",
+    "job_url": "https://www.indeed.com/viewjob?jk=ef00833903d1c3b3",
+    "job_source": "indeed",
+    "job_description": "**DESCRIPTION**\n---------------\n\nPrime Video is a first-stop entertainment destination offering customers a vast collection of premium programming in one app available across thousands of devices. Prime members can customize their viewing experience and find their favorite movies, series, documentaries, and live sports – including Amazon MGM Studios-produced series and movies; licensed fan favorites; and programming from Prime Video add-on subscriptions such as Apple TV+, Max, Crunchyroll and MGM+. All customers, regardless of whether they have a Prime membership or not, can rent or buy titles via the Prime Video Store, and can enjoy even more content for free with ads.  \n  \nWithin Prime Video, the Search Engineering team is making a step change in the look, feel and quality of our Search experience. We are standing up a brand new Search Engine that need to handle 1B+ requests every month. We are innovating with leading-edge Machine Learning technologies like Large Language Models including Retrieval-Augmented Generation techniques, and developing net new Named Entity Recognition and Natural Language Understanding models.  \n  \nIf you are ready to truly make an impact on a product that is used by millions of people around the world, including your own friends and family, then we would love to talk to you.  \n  \nKey job responsibilities  \n\n* Directly interfacing with product managers and other stake holders to build features that help new customer experience for Prime Video.\n* Create end to end solutions and execute via software engineering design, development, and ultimately helping millions of Prime Video customers.\n* We work with customer facing products that are highly visible and on initiatives that directly impact PV goals of increasing customer activity on the platform.\n* We use Machine Learning to analyze the customer's behavior to infer what they would be most likely to watch and recommend content that is highly relevant.\n\n  \nA day in the life  \nAs a member of the team, you will spend your time as a hands-on engineer and a technical leader. You will play a key role in building software products and features from the ground up. You will use a wide range of technologies, programming languages and systems. Your responsibilities will include all aspects of software development. You will work with Data Scientists to build Personalization and Recommender systems. You will be given the freedom and inspiration to explore your own ideas and the reward of seeing your contributions benefit millions of Amazon.com customers worldwide.  \n  \nAbout the team  \n\n* We are a team of engineers that focuses on solving customer problems with a diverse cultural mindset.\n* We drive to create a team culture of leaders that are able to shine as individuals and as a team.\n\n**BASIC QUALIFICATIONS**\n------------------------\n\n* 3+ years of non-internship professional software development experience\n* 2+ years of non-internship design or architecture (design patterns, reliability and scaling) of new and existing systems experience\n* Experience programming with at least one software programming language\n\n**PREFERRED QUALIFICATIONS**\n----------------------------\n\n* 3+ years of full software development life cycle, including coding standards, code reviews, source control management, build processes, testing, and operations experience\n* Bachelor's degree in computer science or equivalent\n\n  \nAmazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status.  \n  \nLos Angeles County applicants: Job duties for this position include: work safely and cooperatively with other employees, supervisors, and staff; adhere to standards of excellence despite stressful conditions; communicate effectively and respectfully with employees, supervisors, and staff to ensure exceptional customer service; and follow all federal, state, and local laws and Company policies. Criminal history may have a direct, adverse, and negative relationship with some of the material job duties of this position. These include the duties and responsibilities listed above, as well as the abilities to adhere to company policies, exercise sound judgment, effectively manage stress and work safely and respectfully with others, exhibit trustworthiness and professionalism, and safeguard business operations and the Company’s reputation. Pursuant to the Los Angeles County Fair Chance Ordinance, we will consider for employment qualified applicants with arrest and conviction records.  \n  \nOur inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit https://amazon.jobs/content/en/how-we-hire/accommodations for more information. If the country/region you’re applying in isn’t listed, please contact your Recruiting Partner.  \n  \nOur compensation reflects the cost of labor across several US geographic markets. The base pay for this position ranges from $129,300/year in our lowest geographic market up to $223,600/year in our highest geographic market. Pay is based on a number of factors including market location and may vary depending on job-related knowledge, skills, and experience. Amazon is a total compensation company. Dependent on the position offered, equity, sign-on payments, and other forms of compensation may be provided as part of a total compensation package, in addition to a full range of medical, financial, and/or other benefits. For more information, please visit https://www.aboutamazon.com/workplace/employee-benefits. This position will remain posted until filled. Applicants should apply via our internal or external career site.",
+    "job_type": "fulltime",
+    "location": "New York, NY, US",
+    "date_posted": "2025-03-26T00:00:00",
+    "company_industry": "Internet And Software",
+    "company_url": "https://www.indeed.com/cmp/Amazon.com",
+    "company_logo": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/256x256/3e9d43f5c277de169808abdcaf49ba2c",
+    "company_address": "440 Terry Ave N, Seattle, WA, United States, Washington",
+    "company_size": "10,000+",
+    "company_revenue": "more than $10B (USD)",
+    "company_description": "Our mission is to be Earth's most customer-centric company.",
+    "remote_work": "On-site",
+    "salary_range": {
+      "min_amount": 129300.0,
+      "max_amount": 223600.0,
+      "currency": "USD"
+    },
+    "days_ago": 143,
+    "experience_range": {
+      "min_years": 3,
+      "max_years": 8
+    },
+    "job_level": "senior_level",
+    "skills_required": [
+      "machine learning"
+    ]
+  },
+  {
+    "job_id": "in-e82b0591e6b9ceab",
+    "job_title": "Software Development Engineer",
+    "company_name": "Amazon.com",
+    "job_url": "https://www.indeed.com/viewjob?jk=e82b0591e6b9ceab",
+    "job_source": "indeed",
+    "job_description": "**DESCRIPTION**\n---------------\n\nWe have a rapidly growing customer base and an exciting charter in front of us that includes solving highly complex engineering and algorithmic problems. We are looking for passionate and talented Software Development Engineers to join us to innovate on this new service that addresses customer needs to build modern contact centers in the cloud. The position represents a rare opportunity to be a part of a fast-growing business soon after launch, and help shape the technology and product as we grow. You will be playing a crucial role in developing the next generation contact center, and get the opportunity to design and deliver scalable, resilient systems while maintaining a constant customer focus.  \n  \nAs a developer on our team, you’ll own code end-to-end from design to development, and work closely with senior technical leaders within the team and across AWS. You’ll have a sound understanding of computer science fundamentals and practical industry experience, working across the stack with technology involving modern web, SOA, NoSQL databases, MicroServices and more.  \n  \nAbout the team  \nThis team is a great fit for you if  \n  \nYou enjoy working with a fun team that prides itself on a great work environment with an inclusive group of people that are working together towards a common goal.  \nYou are sensitive to customer needs and interested in working on a service that will be used, directly and indirectly, by millions of customers and has a meaningful impact to their functions and interactions.  \nYou’d like to be directly responsible for solving real customer problems.  \nYou are a passionate learner and are motivated to take on new challenges.  \nYou want to have fun; surround yourself with a highly talented pool of engineers that like to solve complex problems, but also enjoy work life balance.\n\n**BASIC QUALIFICATIONS**\n------------------------\n\n* 3+ years of non-internship professional software development experience\n* 2+ years of non-internship design or architecture (design patterns, reliability and scaling) of new and existing systems experience\n* Experience programming with at least one software programming language\n\n**PREFERRED QUALIFICATIONS**\n----------------------------\n\n* 3+ years of full software development life cycle, including coding standards, code reviews, source control management, build processes, testing, and operations experience\n* Bachelor's degree in computer science or equivalent\n\n  \nAmazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status.  \n  \nLos Angeles County applicants: Job duties for this position include: work safely and cooperatively with other employees, supervisors, and staff; adhere to standards of excellence despite stressful conditions; communicate effectively and respectfully with employees, supervisors, and staff to ensure exceptional customer service; and follow all federal, state, and local laws and Company policies. Criminal history may have a direct, adverse, and negative relationship with some of the material job duties of this position. These include the duties and responsibilities listed above, as well as the abilities to adhere to company policies, exercise sound judgment, effectively manage stress and work safely and respectfully with others, exhibit trustworthiness and professionalism, and safeguard business operations and the Company’s reputation. Pursuant to the Los Angeles County Fair Chance Ordinance, we will consider for employment qualified applicants with arrest and conviction records.  \n  \nOur inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit https://amazon.jobs/content/en/how-we-hire/accommodations for more information. If the country/region you’re applying in isn’t listed, please contact your Recruiting Partner.  \n  \nOur compensation reflects the cost of labor across several US geographic markets. The base pay for this position ranges from $129,300/year in our lowest geographic market up to $223,600/year in our highest geographic market. Pay is based on a number of factors including market location and may vary depending on job-related knowledge, skills, and experience. Amazon is a total compensation company. Dependent on the position offered, equity, sign-on payments, and other forms of compensation may be provided as part of a total compensation package, in addition to a full range of medical, financial, and/or other benefits. For more information, please visit https://www.aboutamazon.com/workplace/employee-benefits. This position will remain posted until filled. Applicants should apply via our internal or external career site.",
+    "job_type": "fulltime",
+    "location": "New York, NY, US",
+    "date_posted": "2025-03-25T00:00:00",
+    "company_industry": "Internet And Software",
+    "company_url": "https://www.indeed.com/cmp/Amazon.com",
+    "company_logo": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/256x256/3e9d43f5c277de169808abdcaf49ba2c",
+    "company_address": "440 Terry Ave N, Seattle, WA, United States, Washington",
+    "company_size": "10,000+",
+    "company_revenue": "more than $10B (USD)",
+    "company_description": "Our mission is to be Earth's most customer-centric company.",
+    "remote_work": "On-site",
+    "salary_range": {
+      "min_amount": 129300.0,
+      "max_amount": 223600.0,
+      "currency": "USD"
+    },
+    "days_ago": 144,
+    "experience_range": {
+      "min_years": 3,
+      "max_years": 8
+    },
+    "job_level": "senior_level",
+    "skills_required": [
+      "aws",
+      "microservices"
+    ]
+  },
+  {
+    "job_id": "in-663da17e9884bb5d",
+    "job_title": "Software Dev Engineer - Amazon Connect, Amazon Connect - Identity Management and Access Control",
+    "company_name": "Amazon Web Services",
+    "job_url": "https://www.indeed.com/viewjob?jk=663da17e9884bb5d",
+    "job_source": "indeed",
+    "job_description": "**DESCRIPTION**\n---------------\n\nAs part of the AWS Solutions organization, we have a vision to provide business applications, leveraging Amazon’s unique experience and expertise, that are used by millions of companies worldwide to manage day-to-day operations. We accomplish this by accelerating our customers’ businesses through delivery of intuitive and differentiated technology solutions that solve enduring business challenges. We blend vision with curiosity and Amazon’s real-world experience to build opinionated, turnkey solutions. Where customers prefer to buy over build, we become their trusted partner with solutions that are no-brainers to buy and easy to use.\n  \n  \nAre you inspired to work with a team that launches products with direct and massive impact on Amazon’s customers? Are you excited to join one of the newest and most exciting AWS services? - Amazon Connect is a highly disruptive cloud-based contact center that enables businesses to deliver engaging, dynamic, and personal customer service experiences. Amazon Connect is the result of the ten years of development that went into building the tools Amazon uses to provide its award winning customer service at massive scale and launching it as a publicly available AWS service. With Amazon Connect, you can create your own cloud-based contact center and be taking calls in minutes. Amazon Connect leverages the power of Artificial Intelligence, GenAI, and the large ecosystem of AWS services such as Amazon Lex, Amazon Polly, AWS Lambda, Amazon S3 and Amazon Kinesis to provide a truly frustration free, easy-to-use, extensible, and natural customer experience. With this technology, we are transforming an industry and the way customers interact with businesses and how agents service them.  \n  \nWe have a rapidly growing customer base and an exciting charter in front of us that includes solving complex engineering and algorithmic problems. We are looking for passionate and talented Software Development Engineers to join us to innovate on this new service that addresses customer needs to build modern contact centers in the cloud. The position represents a rare opportunity to be a part of a fast-growing business soon after launch, and help shape the technology and product as we grow. You will be playing a crucial role in developing the next generation contact center, and get the opportunity to design and deliver scaleable, resilient systems while maintaining a constant customer focus.  \n  \nKey job responsibilities  \nAs a developer on our team, you’ll own code end-to-end from design to production readiness, and work closely with senior technical leaders within the team and across AWS. You’ll have a sound understanding of computer science fundamentals and practical industry experience, working across the stack with technology involving modern web, SOA, NoSQL databases, AI, ML, Big Data and more.  \n  \nThis team is a great fit for you if:  \n  \n1. You enjoy working with a fun team that prides itself on a great work environment with an inclusive group of people that are working together towards a common goal.  \n2. You are sensitive to customer needs and interested in working on a service that will be used, directly and indirectly, by millions of customers and has a meaningful impact to their functions and interactions.  \n3. You’d like to be directly responsible for solving real customer problems.  \n4. You are a passionate learner and are motivated to take on new challenges.  \n5. You want to have fun; surround yourself with a highly talented pool of engineers that like to solve complex problems, but also enjoy work life balance.  \n  \nAbout the team  \nDiverse Experiences\n  \nAmazon values diverse experiences. Even if you do not meet all of the preferred qualifications and skills listed in the job description, we encourage you to apply. If your career is just starting, hasn’t followed a traditional path, or includes alternative experiences, don’t let it stop you from applying.\n  \n  \nWhy AWS\n  \nAmazon Web Services (AWS) is the world’s most broadly adopted cloud platform. We pioneered cloud computing and never stopped innovating — that’s why customers from the most successful startups to Global 500 companies trust our robust suite of products and services to power their businesses.  \n  \nWork/Life Balance\n  \nWe value work-life harmony. Achieving success at work should never come at the expense of sacrifices at home, which is why flexible work hours and arrangements are part of our culture. When we feel supported in the workplace and at home, there’s nothing we can’t achieve in the cloud.\n  \nInclusive Team Culture\n  \nHere at AWS, it’s in our nature to learn and be curious. Our employee-led affinity groups foster a culture of inclusion that empower us to be proud of our differences. Ongoing events and learning experiences, including our Conversations on Race and Ethnicity (CORE) and AmazeCon (gender diversity) conferences, inspire us to never stop embracing our uniqueness.  \n  \nMentorship and Career Growth  \nWe’re continuously raising our performance bar as we strive to become Earth’s Best Employer. That’s why you’ll find endless knowledge-sharing, mentorship and other career-advancing resources here to help you develop into a better-rounded professional.\n\n**BASIC QUALIFICATIONS**\n------------------------\n\n* 3+ years of non-internship professional software development experience\n* 2+ years of non-internship design or architecture (design patterns, reliability and scaling) of new and existing systems experience\n* Experience programming with at least one software programming language\n\n**PREFERRED QUALIFICATIONS**\n----------------------------\n\n* 3+ years of full software development life cycle, including coding standards, code reviews, source control management, build processes, testing, and operations experience\n* Bachelor's degree in computer science or equivalent\n\n  \nAmazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status.  \n  \nOur inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit https://amazon.jobs/content/en/how-we-hire/accommodations for more information. If the country/region you’re applying in isn’t listed, please contact your Recruiting Partner.  \n  \nOur compensation reflects the cost of labor across several US geographic markets. The base pay for this position ranges from $129,300/year in our lowest geographic market up to $223,600/year in our highest geographic market. Pay is based on a number of factors including market location and may vary depending on job-related knowledge, skills, and experience. Amazon is a total compensation company. Dependent on the position offered, equity, sign-on payments, and other forms of compensation may be provided as part of a total compensation package, in addition to a full range of medical, financial, and/or other benefits. For more information, please visit https://www.aboutamazon.com/workplace/employee-benefits. This position will remain posted until filled. Applicants should apply via our internal or external career site.",
+    "job_type": "fulltime",
+    "location": "New York, NY, US",
+    "date_posted": "2025-02-25T00:00:00",
+    "company_url": "https://www.indeed.com/cmp/Amazon-Web-Services-05cb4ad1",
+    "company_logo": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/256x256/744e8603d216350c9c1d21837f2ed7a6",
+    "company_address": "Seattle, WA",
+    "company_size": "Decline to state",
+    "company_revenue": "more than $10B (USD)",
+    "company_description": "Amazon Web Services (AWS) offers the world’s most comprehensive and broadly adopted cloud platform, with over 200 powerful services that enable our customers and our people to make more of an impact. ",
+    "remote_work": "On-site",
+    "salary_range": {
+      "min_amount": 129300.0,
+      "max_amount": 223600.0,
+      "currency": "USD"
+    },
+    "days_ago": 172,
+    "experience_range": {
+      "min_years": 3,
+      "max_years": 8
+    },
+    "job_level": "senior_level",
+    "skills_required": [
+      "aws"
+    ]
+  },
+  {
+    "job_id": "in-6e73527188062a9d",
+    "job_title": "Senior SDE , Amazon Stores",
+    "company_name": "Amazon.com",
+    "job_url": "https://www.indeed.com/viewjob?jk=6e73527188062a9d",
+    "job_source": "indeed",
+    "job_description": "**DESCRIPTION**\n---------------\n\nAs an Amazon Senior Software Development Engineer, you will solve unique and complex problems at a rapid pace, utilizing the latest technologies to create solutions that are highly scalable. You will find that there is an unlimited amount of opportunities within Amazon, where developing your career across a wide range of teams is highly supported. We are committed to making your work experience as enjoyable as the experiences you’ll be creating for our customers.  \n  \nApply now and you will be eligible for Amazon Senior Software Development Engineering positions that are based on your preferred location, team, tech stack, domain, language and more. We’re hiring across Amazon Stores in the United States and Canada. Teams with available positions including, but are not limited to:  \n  \n\n* Consumer Technology: Build new generation features and products for amazon.com, constantly improving the Customer and Seller experience for billions around the globe. Whether building site wide features such as reviews and recommendations, category specific software for the likes of Pharmacy, Electronics, Digital Software and Video Games or seller infrastructure, there are a variety of complex problems to tackle using a range of technologies in the design of your technical solutions.\n\n  \n\n* Operations Technology: Shape the future of transportation planning and execution on a global scale, that impacts hundreds of fulfillment centers, thousands of Amazonians, and millions of customers across the world. Your technology will support thousands of operators worldwide to design, build and run the best-in-class Amazon transportation network. We are building intelligent software to make transportation more reliable, faster, and less costly, providing a better and less expensive experience for our customers.\n\n  \n\n* Financial Technology: Create next generation of distributed, scalable financial systems that support Amazon's current and future business needs. Use big data technologies to design and develop services that facilitate global financial transactions worth billions annually. You’ll lead architecture, design, implementation and deployment of large-scale critical and complex financial applications, owning all aspects of solutions end-to-end, through full stack software development.\n\n  \n\n* Human Resources Technology: Create a seamless experience for millions of Amazonians and/or candidates. Whether supporting technologies for onboarding, time and attendance, compensation, ama-zon.jobs, or recruiting, you’ll deliver robust feature sets, elegant designs, intuitive user interfaces and systems that make it easy for Amazonians to excel at performing critical business functions.\n\n  \nDepending on your experience, interests and business needs, you will own the front-end, back-end, or full stack design and development of product features, building scale, efficiency, and differentiated customer experiences. We’re looking for software engineers passionate about building software solutions end-to-end, have strong software development experience delivering at scale solutions, and systems design skills. You should have a demonstrated ability delivering within a DevOps delivery model from scoping requirements, requirement analysis, design, development, test, CI/CD, security implementation, and operational excellence with the ability to work cross-functionally with Product Managers, business stakeholders and other tech teams through the actual launch of the project. You should also have experience in communicating with users, other technical teams, and management to collect requirements, describe software product features, and technical designs.  \n  \nAbout the team  \nHere at Amazon, we embrace our differences. We are committed to furthering our culture of inclusion. We have ten employee-led affinity groups, reaching 40,000 employees in over 190 chapters globally. We have innovative benefit offerings, and host annual and ongoing learning experiences, including our Conversations on Race and Ethnicity (CORE) and AmazeCon (gender diversity) conferences. Amazon’s culture of inclusion is reinforced within our 14 Leadership Principles, which remind team members to seek diverse perspectives, learn and be curious, and earn trust.\n\n**BASIC QUALIFICATIONS**\n------------------------\n\n* 5+ years of non-internship professional software development experience\n* 5+ years of programming with at least one software programming language experience\n* 5+ years of leading design or architecture (design patterns, reliability and scaling) of new and existing systems experience\n* Experience as a mentor, tech lead or leading an engineering team\n\n**PREFERRED QUALIFICATIONS**\n----------------------------\n\n* 5+ years of full software development life cycle, including coding standards, code reviews, source control management, build processes, testing, and operations experience\n* Bachelor's degree in computer science or equivalent\n\n  \nAmazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status.  \n  \nLos Angeles County applicants: Job duties for this position include: work safely and cooperatively with other employees, supervisors, and staff; adhere to standards of excellence despite stressful conditions; communicate effectively and respectfully with employees, supervisors, and staff to ensure exceptional customer service; and follow all federal, state, and local laws and Company policies. Criminal history may have a direct, adverse, and negative relationship with some of the material job duties of this position. These include the duties and responsibilities listed above, as well as the abilities to adhere to company policies, exercise sound judgment, effectively manage stress and work safely and respectfully with others, exhibit trustworthiness and professionalism, and safeguard business operations and the Company’s reputation. Pursuant to the Los Angeles County Fair Chance Ordinance, we will consider for employment qualified applicants with arrest and conviction records.  \n  \nPursuant to the San Francisco Fair Chance Ordinance, we will consider for employment qualified applicants with arrest and conviction records.  \n  \nOur inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit https://amazon.jobs/content/en/how-we-hire/accommodations for more information. If the country/region you’re applying in isn’t listed, please contact your Recruiting Partner.  \n  \nOur compensation reflects the cost of labor across several US geographic markets. The base pay for this position ranges from $151,300/year in our lowest geographic market up to $261,500/year in our highest geographic market. Pay is based on a number of factors including market location and may vary depending on job-related knowledge, skills, and experience. Amazon is a total compensation company. Dependent on the position offered, equity, sign-on payments, and other forms of compensation may be provided as part of a total compensation package, in addition to a full range of medical, financial, and/or other benefits. For more information, please visit https://www.aboutamazon.com/workplace/employee-benefits. This position will remain posted until filled. Applicants should apply via our internal or external career site.",
+    "job_type": "fulltime",
+    "location": "New York, NY, US",
+    "date_posted": "2025-01-22T00:00:00",
+    "company_industry": "Internet And Software",
+    "company_url": "https://www.indeed.com/cmp/Amazon.com",
+    "company_logo": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/256x256/3e9d43f5c277de169808abdcaf49ba2c",
+    "company_address": "440 Terry Ave N, Seattle, WA, United States, Washington",
+    "company_size": "10,000+",
+    "company_revenue": "more than $10B (USD)",
+    "company_description": "Our mission is to be Earth's most customer-centric company.",
+    "remote_work": "On-site",
+    "salary_range": {
+      "min_amount": 151300.0,
+      "max_amount": 261500.0,
+      "currency": "USD"
+    },
+    "days_ago": 206,
+    "experience_range": {
+      "min_years": 5,
+      "max_years": 10
+    },
+    "job_level": "senior_level",
+    "skills_required": [
+      "ci/cd"
+    ]
+  },
+  {
+    "job_id": "in-9047840754c10371",
+    "job_title": "Software Development Engineer, Amazon Stores",
+    "company_name": "Amazon.com",
+    "job_url": "https://www.indeed.com/viewjob?jk=9047840754c10371",
+    "job_source": "indeed",
+    "job_description": "**DESCRIPTION**\n---------------\n\nCome build the future as a Software Development Engineer at Amazon, where you will be inspired working along best-in-class inventors and innovators! You will have the opportunity to create meaningful experiences that deliver on the ever-evolving needs of our customers, and your work will impact millions of people around the world.  \n  \nAs an Amazon Software Development Engineer, you will solve unique and complex problems at a rapid pace, utilizing the latest technologies to create solutions that are highly scalable. You will find that there is an unlimited amount of opportunities within Amazon, where developing your career across a wide range of teams is highly supported. We are committed to making your work experience as enjoyable as the experiences you’ll be creating for our customers.  \n  \nApply now and you will be eligible for Amazon Software Development Engineering positions that are based on your preferred location, team, tech stack, domain, language and more. We’re hiring across Amazon Stores in the United States and Canada. Teams with available positions including, but are not limited to:  \n  \n\n* Consumer Technology: Build new generation features and products for amazon.com, constantly improving the Customer and Seller experience for billions around the globe. Whether building site wide features such as reviews and recommendations, category specific software for the likes of Pharmacy, Electronics, Digital Software and Video Games or seller infrastructure, there are a variety of complex problems to tackle using a range of technologies in the design of your technical solutions.\n\n  \n\n* Operations Technology: Shape the future of transportation planning and execution on a global scale, that impacts hundreds of fulfillment centers, thousands of Amazonians, and millions of customers across the world. Your technology will support thousands of operators worldwide to design, build and run the best-in-class Amazon transportation network. We are building intelligent software to make transportation more reliable, faster, and less costly, providing a better and less expensive experience for our customers.\n\n  \n\n* Financial Technology: Create next generation of distributed, scalable financial systems that support Amazon's current and future business needs. Use big data technologies to design and develop services that facilitate global financial transactions worth billions annually. You’ll lead architecture, design, implementation and deployment of large-scale critical and complex financial applications, owning all aspects of solutions end-to-end, through full stack software development.\n\n  \n\n* Human Resources Technology: Create a seamless experience for millions of Amazonians and/or candidates. Whether supporting technologies for onboarding, time and attendance, compensation, ama-zon.jobs, or recruiting, you’ll deliver robust feature sets, elegant designs, intuitive user interfaces and systems that make it easy for Amazonians to excel at performing critical business functions.\n\n  \nDepending on your experience, interests and business needs, you will own the front-end, back-end, or full stack design and development of product features, building scale, efficiency, and differentiated customer experiences. We’re looking for software engineers passionate about building software solutions end-to-end, have strong software development experience delivering at scale solutions, and systems design skills. You should have a demonstrated ability delivering within a DevOps delivery model from scoping requirements, requirement analysis, design, development, test, CI/CD, security implementation, and operational excellence with the ability to work cross-functionally with Product Managers, business stakeholders and other tech teams through the actual launch of the project. You should also have experience in communicating with users, other technical teams, and management to collect requirements, describe software product features, and technical designs.\n\n**BASIC QUALIFICATIONS**\n------------------------\n\n* 3+ years of non-internship professional software development experience\n* 2+ years of non-internship design or architecture (design patterns, reliability and scaling) of new and existing systems experience\n* Experience programming with at least one software programming language\n\n**PREFERRED QUALIFICATIONS**\n----------------------------\n\n* 3+ years of full software development life cycle, including coding standards, code reviews, source control management, build processes, testing, and operations experience\n* Bachelor's degree in computer science or equivalent\n\n  \nAmazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status.  \n  \nOur inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit https://amazon.jobs/content/en/how-we-hire/accommodations for more information. If the country/region you’re applying in isn’t listed, please contact your Recruiting Partner.  \n  \nOur compensation reflects the cost of labor across several US geographic markets. The base pay for this position ranges from $129,300/year in our lowest geographic market up to $223,600/year in our highest geographic market. Pay is based on a number of factors including market location and may vary depending on job-related knowledge, skills, and experience. Amazon is a total compensation company. Dependent on the position offered, equity, sign-on payments, and other forms of compensation may be provided as part of a total compensation package, in addition to a full range of medical, financial, and/or other benefits. For more information, please visit https://www.aboutamazon.com/workplace/employee-benefits. This position will remain posted until filled. Applicants should apply via our internal or external career site.",
+    "job_type": "fulltime",
+    "location": "New York, NY, US",
+    "date_posted": "2025-01-22T00:00:00",
+    "company_industry": "Internet And Software",
+    "company_url": "https://www.indeed.com/cmp/Amazon.com",
+    "company_logo": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/256x256/3e9d43f5c277de169808abdcaf49ba2c",
+    "company_address": "440 Terry Ave N, Seattle, WA, United States, Washington",
+    "company_size": "10,000+",
+    "company_revenue": "more than $10B (USD)",
+    "company_description": "Our mission is to be Earth's most customer-centric company.",
+    "remote_work": "On-site",
+    "salary_range": {
+      "min_amount": 129300.0,
+      "max_amount": 223600.0,
+      "currency": "USD"
+    },
+    "days_ago": 206,
+    "experience_range": {
+      "min_years": 3,
+      "max_years": 8
+    },
+    "job_level": "senior_level",
+    "skills_required": [
+      "ci/cd"
+    ]
+  },
+  {
+    "job_id": "in-6ad3e72f8830d983",
+    "job_title": "Software Development Engineer, Amazon Stores",
+    "company_name": "Amazon.com",
+    "job_url": "https://www.indeed.com/viewjob?jk=6ad3e72f8830d983",
+    "job_source": "indeed",
+    "job_description": "**DESCRIPTION**\n---------------\n\nCome build the future as a Software Development Engineer at Amazon, where you will be inspired working along best-in-class inventors and innovators! You will have the opportunity to create meaningful experiences that deliver on the ever-evolving needs of our customers, and your work will impact millions of people around the world.  \n  \nAs an Amazon Software Development Engineer, you will solve unique and complex problems at a rapid pace, utilizing the latest technologies to create solutions that are highly scalable. You will find that there is an unlimited amount of opportunities within Amazon, where developing your career across a wide range of teams is highly supported. We are committed to making your work experience as enjoyable as the experiences you’ll be creating for our customers.  \n  \nApply now and you will be eligible for Amazon Software Development Engineering positions that are based on your preferred location, team, tech stack, domain, language and more. We’re hiring across Amazon Stores in the United States. Teams with available positions including, but are not limited to:  \n  \n\n* Consumer Technology: Build new generation features and products for amazon.com, constantly improving the Customer and Seller experience for billions around the globe. Whether building site wide features such as reviews and recommendations, category specific software for the likes of Pharmacy, Electronics, Digital Software and Video Games or seller infrastructure, there are a variety of complex problems to tackle using a range of technologies in the design of your technical solutions.\n\n  \n\n* Operations Technology: Shape the future of transportation planning and execution on a global scale, that impacts hundreds of fulfillment centers, thousands of Amazonians, and millions of customers across the world. Your technology will support thousands of operators worldwide to design, build and run the best-in-class Amazon transportation network. We are building intelligent software to make transportation more reliable, faster, and less costly, providing a better and less expensive experience for our customers.\n\n  \nDepending on your experience, interests and business needs, you will own the front-end, back-end, or full stack design and development of product features, building scale, efficiency, and differentiated customer experiences. We’re looking for software engineers passionate about building software solutions end-to-end, have strong software development experience delivering at scale solutions, and systems design skills. You should have a demonstrated ability delivering within a DevOps delivery model from scoping requirements, requirement analysis, design, development, test, CI/CD, security implementation, and operational excellence with the ability to work cross-functionally with Product Managers, business stakeholders and other tech teams through the actual launch of the project. You should also have experience in communicating with users, other technical teams, and management to collect requirements, describe software product features, and technical designs.\n\n**BASIC QUALIFICATIONS**\n------------------------\n\n* 3+ years of non-internship professional software development experience\n* 2+ years of non-internship design or architecture (design patterns, reliability and scaling) of new and existing systems experience\n* Experience programming with at least one software programming language\n\n**PREFERRED QUALIFICATIONS**\n----------------------------\n\n* 3+ years of full software development life cycle, including coding standards, code reviews, source control management, build processes, testing, and operations experience\n* Bachelor's degree in computer science or equivalent\n\n  \nAmazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status.  \n  \nOur inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit https://amazon.jobs/content/en/how-we-hire/accommodations for more information. If the country/region you’re applying in isn’t listed, please contact your Recruiting Partner.  \n  \nOur compensation reflects the cost of labor across several US geographic markets. The base pay for this position ranges from $129,300/year in our lowest geographic market up to $223,600/year in our highest geographic market. Pay is based on a number of factors including market location and may vary depending on job-related knowledge, skills, and experience. Amazon is a total compensation company. Dependent on the position offered, equity, sign-on payments, and other forms of compensation may be provided as part of a total compensation package, in addition to a full range of medical, financial, and/or other benefits. For more information, please visit https://www.aboutamazon.com/workplace/employee-benefits. This position will remain posted until filled. Applicants should apply via our internal or external career site.",
+    "job_type": "fulltime",
+    "location": "New York, NY, US",
+    "date_posted": "2025-01-16T00:00:00",
+    "company_industry": "Internet And Software",
+    "company_url": "https://www.indeed.com/cmp/Amazon.com",
+    "company_logo": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/256x256/3e9d43f5c277de169808abdcaf49ba2c",
+    "company_address": "440 Terry Ave N, Seattle, WA, United States, Washington",
+    "company_size": "10,000+",
+    "company_revenue": "more than $10B (USD)",
+    "company_description": "Our mission is to be Earth's most customer-centric company.",
+    "remote_work": "On-site",
+    "salary_range": {
+      "min_amount": 129300.0,
+      "max_amount": 223600.0,
+      "currency": "USD"
+    },
+    "days_ago": 212,
+    "experience_range": {
+      "min_years": 3,
+      "max_years": 8
+    },
+    "job_level": "senior_level",
+    "skills_required": [
+      "ci/cd"
+    ]
+  },
+  {
+    "job_id": "in-2f1a1a5e0e8b5c33",
+    "job_title": "Sr. Software Development Engineer, Amazon Prime Video",
+    "company_name": "Amazon.com",
+    "job_url": "https://www.indeed.com/viewjob?jk=2f1a1a5e0e8b5c33",
+    "job_source": "indeed",
+    "job_description": "**DESCRIPTION**\n---------------\n\nPrime Video is a premium streaming service that offers customers a vast collection of TV shows and movies - all with the ease of finding what they love to watch in one place. We offer customers thousands of popular movies and TV shows including Amazon Originals and exclusive licensed content to exciting live sports events. We also offer our members the opportunity to subscribe to add-on channels which they can cancel at anytime and to rent or buy new release movies and TV box sets on the Prime Video Store. Prime Video is a fast-paced, growth business - available in over 200 countries and territories worldwide. The team works in a dynamic environment where innovating on behalf of our customers is at the heart of everything we do. If this sounds exciting to you, please read on.  \n  \nWe are growing rapidly and looking for strong engineers who are up for one of the biggest challenges in the video streaming business, live-streaming millions of concurrent streams and delivering high-quality content to millions of users worldwide.  \n  \nAt Prime Video, you’ll experience the benefits of working in a dynamic, entrepreneurial environment. You will own and operate business critical high-throughput services that deliver the content to our customers in a reliable and low latent manner.  \n  \nAbout the team  \nOur mission is to generate new and enrich existing metadata to power trust & safety, search, discovery, and playback experiences for customers worldwide.\n\n**BASIC QUALIFICATIONS**\n------------------------\n\n* 5+ years of non-internship professional software development experience\n* 5+ years of programming with at least one software programming language experience\n* 5+ years of leading design or architecture (design patterns, reliability and scaling) of new and existing systems experience\n* Experience as a mentor, tech lead or leading an engineering team\n\n**PREFERRED QUALIFICATIONS**\n----------------------------\n\n* 5+ years of full software development life cycle, including coding standards, code reviews, source control management, build processes, testing, and operations experience\n* Bachelor's degree in computer science or equivalent\n* Experience contributing to the architecture and design (architecture, design patterns, reliability and scaling) of new and current systems\n* Experience leading and influencing your team or organization\n\n  \nAmazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status.  \n  \nLos Angeles County applicants: Job duties for this position include: work safely and cooperatively with other employees, supervisors, and staff; adhere to standards of excellence despite stressful conditions; communicate effectively and respectfully with employees, supervisors, and staff to ensure exceptional customer service; and follow all federal, state, and local laws and Company policies. Criminal history may have a direct, adverse, and negative relationship with some of the material job duties of this position. These include the duties and responsibilities listed above, as well as the abilities to adhere to company policies, exercise sound judgment, effectively manage stress and work safely and respectfully with others, exhibit trustworthiness and professionalism, and safeguard business operations and the Company’s reputation. Pursuant to the Los Angeles County Fair Chance Ordinance, we will consider for employment qualified applicants with arrest and conviction records.  \n  \nOur inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit https://amazon.jobs/content/en/how-we-hire/accommodations for more information. If the country/region you’re applying in isn’t listed, please contact your Recruiting Partner.  \n  \nOur compensation reflects the cost of labor across several US geographic markets. The base pay for this position ranges from $151,300/year in our lowest geographic market up to $261,500/year in our highest geographic market. Pay is based on a number of factors including market location and may vary depending on job-related knowledge, skills, and experience. Amazon is a total compensation company. Dependent on the position offered, equity, sign-on payments, and other forms of compensation may be provided as part of a total compensation package, in addition to a full range of medical, financial, and/or other benefits. For more information, please visit https://www.aboutamazon.com/workplace/employee-benefits. This position will remain posted until filled. Applicants should apply via our internal or external career site.",
+    "job_type": "fulltime",
+    "location": "New York, NY, US",
+    "date_posted": "2025-01-16T00:00:00",
+    "company_industry": "Internet And Software",
+    "company_url": "https://www.indeed.com/cmp/Amazon.com",
+    "company_logo": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/256x256/3e9d43f5c277de169808abdcaf49ba2c",
+    "company_address": "440 Terry Ave N, Seattle, WA, United States, Washington",
+    "company_size": "10,000+",
+    "company_revenue": "more than $10B (USD)",
+    "company_description": "Our mission is to be Earth's most customer-centric company.",
+    "remote_work": "On-site",
+    "salary_range": {
+      "min_amount": 151300.0,
+      "max_amount": 261500.0,
+      "currency": "USD"
+    },
+    "days_ago": 212,
+    "experience_range": {
+      "min_years": 5,
+      "max_years": 10
+    },
+    "job_level": "senior_level"
+  },
+  {
+    "job_id": "in-57628ca1ac8dcf6b",
+    "job_title": "Software Engineer II - iOS",
+    "company_name": "Amazon.com",
+    "job_url": "https://www.indeed.com/viewjob?jk=57628ca1ac8dcf6b",
+    "job_source": "indeed",
+    "job_description": "**DESCRIPTION**\n---------------\n\nIf you are interested in this position, please apply on Twitch's Career site https://www.twitch.tv/jobs/en/  \n  \nAbout Us:  \n  \nTwitch is the world’s biggest live streaming service, with global communities built around gaming, entertainment, music, sports, cooking, and more. It is where thousands of communities come together for whatever, every day.  \nWe’re about community, inside and out. You’ll find coworkers who are eager to team up, collaborate, and smash (or elegantly solve) problems together. We’re on a quest to empower live communities, so if this sounds good to you, see what we’re up to on LinkedIn and X, and discover the projects we’re solving on our Blog. Be sure to explore our Interviewing Guide to learn how to ace our interview process.  \n  \nAbout the Role  \n  \nIn Mobile Commerce, our mission is to help creators earn a living doing what they love. Our vision is to support streamers on Twitch and make it fun to help their community feel connected (think subs, gifts, cheers, donations, hype train, and creative goals.) Our strategy is to continue building value into our products while unlocking new spending avenues and facilitating purchases through ever-fresh rewards and milestones.  \n  \nAs a Mobile Engineer, on a consumer-facing product team you will create new features, advise engineering and product leaders, and mentor other mobile engineers. You are comfortable partnering with Designers and PMs to get products shipped quickly and in spite of ambiguity. You will report to the Engineering Manager for Mobile Commerce.  \n  \nYou can work in San Francisco, CA; Irvine, CA; New York, NY; or Seattle, WA  \n  \n  \nYou Will  \n  \n\n* Develop and deliver new product features for our iOS application\n* Contribute to high-level design and technical discussions for mobile projects\n* Participate in design and code reviews\n* Improve engineering processes to increase team effectiveness\n* Work across both technical and business-focused teams to deliver value to our creators and viewers\n\n  \nPerks  \n\n* Medical, Dental, Vision & Disability Insurance\n* 401(k)\n* Maternity & Parental Leave\n* Flexible PTO\n* Amazon Employee Discount\n\n  \nKey job responsibilities\n\n**BASIC QUALIFICATIONS**\n------------------------\n\n* 3+ years of mobile development experience\n* Proficiency with Swift or Objective-C, and the iOS development ecosystem\n* Experience with data structures, algorithms, data modeling and schema design\n* Experience working with iOS specific development tools, such as XCode, RxSwift, CocoaPods, Firebase, SwiftUI, UIKit or Swift Package Manager.\n* Experience on a mobile engineering team partnering with other engineering teams, and communicating complicated technical problems to both technical and business audiences\n\n**PREFERRED QUALIFICATIONS**\n----------------------------\n\n* Bachelor's degree or above in Computer Science or a relevant field\n* Experience with monetization-focused features\n* Familiarity or experience working with GraphQL APIs\n* Familiarity with the AWS ecosystem\n\n  \nTwitch is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status.  \n  \nLos Angeles County applicants: Job duties for this position include: work safely and cooperatively with other employees, supervisors, and staff; adhere to standards of excellence despite stressful conditions; communicate effectively and respectfully with employees, supervisors, and staff to ensure exceptional customer service; and follow all federal, state, and local laws and Company policies. Criminal history may have a direct, adverse, and negative relationship with some of the material job duties of this position. These include the duties and responsibilities listed above, as well as the abilities to adhere to company policies, exercise sound judgment, effectively manage stress and work safely and respectfully with others, exhibit trustworthiness and professionalism, and safeguard business operations and the Company’s reputation. Pursuant to the Los Angeles County Fair Chance Ordinance, we will consider for employment qualified applicants with arrest and conviction records.  \n  \nPursuant to the San Francisco Fair Chance Ordinance, we will consider for employment qualified applicants with arrest and conviction records.  \n  \nOur inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit https://amazon.jobs/content/en/how-we-hire/accommodations for more information. If the country/region you’re applying in isn’t listed, please contact your Recruiting Partner.  \n  \nOur compensation reflects the cost of labor across several US geographic markets. The base pay for this position ranges from $129,300/year in our lowest geographic market up to $223,600/year in our highest geographic market. Pay is based on a number of factors including market location and may vary depending on job-related knowledge, skills, and experience. Amazon is a total compensation company. Dependent on the position offered, equity, sign-on payments, and other forms of compensation may be provided as part of a total compensation package, in addition to a full range of medical, financial, and/or other benefits. For more information, please visit https://www.aboutamazon.com/workplace/employee-benefits. This position will remain posted until filled. Applicants should apply via our internal or external career site.",
+    "job_type": "fulltime",
+    "location": "New York, NY, US",
+    "date_posted": "2024-11-20T00:00:00",
+    "company_industry": "Internet And Software",
+    "company_url": "https://www.indeed.com/cmp/Amazon.com",
+    "company_logo": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/256x256/3e9d43f5c277de169808abdcaf49ba2c",
+    "company_address": "440 Terry Ave N, Seattle, WA, United States, Washington",
+    "company_size": "10,000+",
+    "company_revenue": "more than $10B (USD)",
+    "company_description": "Our mission is to be Earth's most customer-centric company.",
+    "remote_work": "On-site",
+    "salary_range": {
+      "min_amount": 129300.0,
+      "max_amount": 223600.0,
+      "currency": "USD"
+    },
+    "days_ago": 269,
+    "experience_range": {
+      "min_years": 3,
+      "max_years": 8
+    },
+    "job_level": "senior_level",
+    "skills_required": [
+      "swift",
+      "aws",
+      "graphql"
+    ]
+  },
+  {
+    "job_id": "in-8ad3455dc47f16b5",
+    "job_title": "Software Development Engineer, AWS Compute Services",
+    "company_name": "Amazon Web Services",
+    "job_url": "https://www.indeed.com/viewjob?jk=8ad3455dc47f16b5",
+    "job_source": "indeed",
+    "job_description": "**DESCRIPTION**\n---------------\n\nServerless Compute (https://aws.amazon.com/serverless/?nc2=type\\_a) is changing the way we think about computing in the cloud. Serverless computing offers customers an exciting new way to create applications, turn business logic and application code into scalable, fault-tolerant production systems without requiring them to be experts in distributed systems, deployment technologies, and infrastructure management. AWS offers technologies for running code, managing data, and integrating applications, all without managing servers.\n  \n  \nIn this role you will work with team to build the new generic platform by using latest AWS technologies. You will solve interesting technical challenges with creative ideas in the domain combined by event driven application and Serverless technologies. You will build features for the distributed and large-scale system which will handle billions or trillions transactions. You have opportunities to re-shape the experience of Serverless development.  \n  \n10017  \n  \nA day in the life  \n\\*\\*Why AWS  \n\\*\\*Amazon Web Services (AWS) is the world’s most comprehensive and broadly adopted cloud platform. We pioneered cloud computing and never stopped innovating — that’s why customers from the most successful startups to Global 500 companies trust our robust suite of products and services to power their businesses.  \n  \n\\*\\*Diverse Experiences\\*\\*  \nAmazon values diverse experiences. Even if you do not meet all of the preferred qualifications and skills listed in the job description, we encourage candidates to apply. If your career is just starting, hasn’t followed a traditional path, or includes alternative experiences, don’t let it stop you from applying.  \n  \n\\*\\*Work/Life Balance\\* \\*  \nWe value work-life harmony. Achieving success at work should never come at the expense of sacrifices at home, which is why we strive for flexibility as part of our working culture. When we feel supported in the workplace and at home, there’s nothing we can’t achieve in the cloud.\n  \n  \n\\*\\*Inclusive Team Culture\\* \\*  \nHere at AWS, it’s in our nature to learn and be curious. Our employee-led affinity groups foster a culture of inclusion that empower us to be proud of our differences. Ongoing events and learning experiences, including our Conversations on Race and Ethnicity (CORE) and AmazeCon (gender diversity) conferences, inspire us to never stop embracing our uniqueness.  \n  \n\\*\\*Mentorship and Career Growth\\*\\*  \nWe’re continuously raising our performance bar as we strive to become Earth’s Best Employer. That’s why you’ll find endless knowledge-sharing, mentorship and other career-advancing resources here to help you develop into a better-rounded professional.  \n  \n  \n  \n  \nAbout the team  \n\\*Utility Computing (UC)\\*\n  \nAWS Utility Computing (UC) provides product innovations — from foundational services such as Amazon’s Simple Storage Service (S3) and Amazon Elastic Compute Cloud (EC2), to consistently released new product innovations that continue to set AWS’s services and features apart in the industry. As a member of the UC organization, you’ll support the development and management of Compute, Database, Storage, Internet of Things (Iot), Platform, and Productivity Apps services in AWS, including support for customers who require specialized security solutions for their cloud services.\n\n**BASIC QUALIFICATIONS**\n------------------------\n\n* 3+ years of non-internship professional software development experience\n* 2+ years of non-internship design or architecture (design patterns, reliability and scaling) of new and existing systems experience\n* Experience programming with at least one software programming language\n\n**PREFERRED QUALIFICATIONS**\n----------------------------\n\n* 3+ years of full software development life cycle, including coding standards, code reviews, source control management, build processes, testing, and operations experience\n* Bachelor's degree in computer science or equivalent\n\n  \nAmazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability, or other legally protected status.  \n  \nOur inclusive culture empowers Amazonians to deliver the best results for our customers. If you have a disability and need a workplace accommodation or adjustment during the application and hiring process, including support for the interview or onboarding process, please visit https://amazon.jobs/content/en/how-we-hire/accommodations for more information. If the country/region you’re applying in isn’t listed, please contact your Recruiting Partner.  \n  \nOur compensation reflects the cost of labor across several US geographic markets. The base pay for this position ranges from $129,300/year in our lowest geographic market up to $223,600/year in our highest geographic market. Pay is based on a number of factors including market location and may vary depending on job-related knowledge, skills, and experience. Amazon is a total compensation company. Dependent on the position offered, equity, sign-on payments, and other forms of compensation may be provided as part of a total compensation package, in addition to a full range of medical, financial, and/or other benefits. For more information, please visit https://www.aboutamazon.com/workplace/employee-benefits. This position will remain posted until filled. Applicants should apply via our internal or external career site.",
+    "job_type": "fulltime",
+    "location": "New York, NY, US",
+    "date_posted": "2024-08-15T00:00:00",
+    "company_url": "https://www.indeed.com/cmp/Amazon-Web-Services-05cb4ad1",
+    "company_logo": "https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/256x256/744e8603d216350c9c1d21837f2ed7a6",
+    "company_address": "Seattle, WA",
+    "company_size": "Decline to state",
+    "company_revenue": "more than $10B (USD)",
+    "company_description": "Amazon Web Services (AWS) offers the world’s most comprehensive and broadly adopted cloud platform, with over 200 powerful services that enable our customers and our people to make more of an impact. ",
+    "remote_work": "On-site",
+    "salary_range": {
+      "min_amount": 129300.0,
+      "max_amount": 223600.0,
+      "currency": "USD"
+    },
+    "days_ago": 366,
+    "experience_range": {
+      "min_years": 3,
+      "max_years": 8
+    },
+    "job_level": "senior_level",
+    "skills_required": [
+      "aws"
+    ]
+  },
+  {
+    "job_id": "li-4275432002",
+    "job_title": "Software Engineer - Parametric",
+    "company_name": "Morgan Stanley",
+    "job_url": "https://www.linkedin.com/jobs/view/4275432002",
+    "job_source": "linkedin",
+    "job_level": "",
+    "location": "New York, NY",
+    "date_posted": "2025-08-15T00:00:00",
+    "company_url": "https://www.linkedin.com/company/morgan-stanley",
+    "remote_work": "On-site",
+    "days_ago": 1
+  },
+  {
+    "job_id": "li-4282809278",
+    "job_title": "Software Engineer (University Grad)",
+    "company_name": "Meta",
+    "job_url": "https://www.linkedin.com/jobs/view/4282809278",
+    "job_source": "linkedin",
+    "job_level": "",
+    "location": "New York, NY",
+    "date_posted": "2025-08-14T00:00:00",
+    "company_url": "https://www.linkedin.com/company/meta",
+    "remote_work": "On-site",
+    "days_ago": 2
+  },
+  {
+    "job_id": "li-4285729424",
+    "job_title": "Software Engineer",
+    "company_name": "HIFI",
+    "job_url": "https://www.linkedin.com/jobs/view/4285729424",
+    "job_source": "linkedin",
+    "job_level": "",
+    "location": "New York, United States",
+    "date_posted": "2025-08-14T00:00:00",
+    "company_url": "https://www.linkedin.com/company/hifibridge",
+    "remote_work": "On-site",
+    "days_ago": 2
+  },
+  {
+    "job_id": "li-4283990363",
+    "job_title": "Software Engineer, Early Career",
+    "company_name": "Suno",
+    "job_url": "https://www.linkedin.com/jobs/view/4283990363",
+    "job_source": "linkedin",
+    "job_level": "",
+    "location": "New York, NY",
+    "date_posted": "2025-08-12T00:00:00",
+    "company_url": "https://www.linkedin.com/company/sunomusic",
+    "remote_work": "On-site",
+    "days_ago": 4
+  },
+  {
+    "job_id": "li-4282333781",
+    "job_title": "Software Engineer Intern (Summer 2026)",
+    "company_name": "Notion",
+    "job_url": "https://www.linkedin.com/jobs/view/4282333781",
+    "job_source": "linkedin",
+    "job_level": "",
+    "location": "New York, NY",
+    "date_posted": "2025-08-09T00:00:00",
+    "company_url": "https://www.linkedin.com/company/notionhq",
+    "remote_work": "On-site",
+    "days_ago": 7
+  },
+  {
+    "job_id": "li-4133463117",
+    "job_title": "Software Engineer (L4) - Ads Measurement",
+    "company_name": "Netflix",
+    "job_url": "https://www.linkedin.com/jobs/view/4133463117",
+    "job_source": "linkedin",
+    "job_level": "",
+    "location": "New York, United States",
+    "date_posted": "2025-08-08T00:00:00",
+    "company_url": "https://www.linkedin.com/company/netflix",
+    "remote_work": "On-site",
+    "days_ago": 8
+  },
+  {
+    "job_id": "li-4262695092",
+    "job_title": "Software Engineer (New Grad Program)",
+    "company_name": "Sigma",
+    "job_url": "https://www.linkedin.com/jobs/view/4262695092",
+    "job_source": "linkedin",
+    "job_level": "",
+    "location": "New York, NY",
+    "date_posted": "2025-08-08T00:00:00",
+    "company_url": "https://www.linkedin.com/company/sigmacomputing",
+    "remote_work": "On-site",
+    "days_ago": 8
+  },
+  {
+    "job_id": "li-4263129877",
+    "job_title": "Software Engineer",
+    "company_name": "Twitch",
+    "job_url": "https://www.linkedin.com/jobs/view/4263129877",
+    "job_source": "linkedin",
+    "job_level": "",
+    "location": "New York, NY",
+    "date_posted": "2025-07-30T00:00:00",
+    "company_url": "https://www.linkedin.com/company/twitch-tv",
+    "remote_work": "On-site",
+    "days_ago": 17
+  },
+  {
+    "job_id": "li-4048172300",
+    "job_title": "Frontend Engineer | All Levels",
+    "company_name": "Ramp",
+    "job_url": "https://www.linkedin.com/jobs/view/4048172300",
+    "job_source": "linkedin",
+    "job_level": "",
+    "location": "New York, United States",
+    "date_posted": "2025-07-26T00:00:00",
+    "company_url": "https://www.linkedin.com/company/ramp",
+    "remote_work": "On-site",
+    "days_ago": 21
+  },
+  {
+    "job_id": "li-4130750192",
+    "job_title": "Software Engineer",
+    "company_name": "Suno",
+    "job_url": "https://www.linkedin.com/jobs/view/4130750192",
+    "job_source": "linkedin",
+    "job_level": "",
+    "location": "New York, NY",
+    "date_posted": "2025-01-20T00:00:00",
+    "company_url": "https://www.linkedin.com/company/sunomusic",
+    "remote_work": "On-site",
+    "days_ago": 208
+  }
+]
